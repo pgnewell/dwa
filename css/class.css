@@ -1,0 +1,63 @@
+.main {
+  border: 0px solid black;
+  margin: 0px auto;
+  width: 550px;
+  padding-right: 30px;
+  padding-left: 30px;
+  background-image: url(/images/paper.png);
+}
+h1 {
+  border: 0px solid red;
+  text-align: center;
+  font-size: 40px;
+  padding-top: 20px;
+}
+h2 { background-color: #CCCCCC; }
+h3 { background-color: #8585AD; }
+
+#date {
+  font-style: italic;
+  text-align: center;
+}
+#feature-image {
+  border: 2px solid black;
+  margin: 10px auto 0px;
+  background-image: url(http://placekitten.com/900/500);
+  background-repeat: no-repeat;
+  height: 500px;
+  width: 900px;
+}
+#caption {
+  border: 0px solid black;
+  margin: 0px auto;
+  text-align: right;
+  width: 900px;
+}
+.row {
+  border: 0px solid black;
+  margin: 0px;
+  width: 500px;
+  clear: both;
+}
+.left-column {
+  border: 0px solid black;
+  margin: 0px;
+  padding: 5px;
+  float: left;
+  width: 100px;
+  display: inline;
+}
+.right-column {
+  border: 0px solid black;
+  margin: 0px;
+  padding: 5px;
+  width: 350px;
+  display: inline;
+  float: right;
+  padding-top: 20px;
+}
+#footer {
+  border: 0px solid red;
+  clear: both;
+  padding-bottom: 20px;
+}
