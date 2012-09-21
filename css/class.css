@@ -4,7 +4,7 @@
   width: 550px;
   padding-right: 30px;
   padding-left: 30px;
-  background-image: url(/images/paper.png);
+  background-image: url(../images/paper.png);
 }
 h1 {
   border: 0px solid red;
