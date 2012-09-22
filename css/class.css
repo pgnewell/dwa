@@ -7,21 +7,16 @@
   background-image: url(../images/paper.png);
 }
 h1 {
-  border: 0px solid red;
+  border: 0px solid black;
   text-align: center;
   font-size: 40px;
   padding-top: 20px;
 }
 h2 { 
-  color: #CCCCCC; 
+  color: #990000; 
 }
 h3 { 
   color: #8585AD; 
-}
-
-#date {
-  font-style: italic;
-  text-align: center;
 }
 
 .row {
