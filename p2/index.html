@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Politeker</title>
+		<link rel="stylesheet" href="../css/class.css" type="text/css">
+		<!--<script type="text/javascript" src="/path/to/scripts.js"></script>-->
+		<meta name="description" content="Paul Newell's second Project submission">
+		<?php
+		$con = mysql_connect("pgn.dyndns-remote.com","pgn","ur2haha");
+		if (!$con)
+		{
+		  echo "major error!!!!";
+		  die('Could not connect: ' . mysql_error());
+		}
+		else 
+		{
+		  $result = mysql_query( 'select sleep(10);');
+		}
+
+		// some code
+		?>
+	</head>
+	<body>
+		<h1>Politiker</h1>
+		<p>This is just for some class I'm taking<p>
+		<h2>Log On</h2>
+		<p>For current user</p>
+		<h2>Sign Up</h2>
+		<h2>Blogs</h2>
+		<?php 
+		mysql_select_db("dwa_p2", $con);
+		$result = mysql_query(
+			"select u.name, b.date, b.message, sleep(10) from blog_text b i
+				join users u on b.author = u.id order by b.date ;", $con);
+		if (!$result)
+		  {
+		  die('nothing in table: ' . mysql_error());
+		  }
+		?>
+		<table>
+			<? while($row = mysql_fetch_array($result)): ?>
+				<th><h3>Date:<?=$row['date']?></h3></th> <td><p><?=$row['message']?></p></td>
+			<? endforeach; ?>	
+		</table>
+		<?php mysql_close($con); ?>
+	</body>
+</html>
