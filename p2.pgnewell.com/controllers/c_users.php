@@ -3,21 +3,21 @@ class users_controller extends base_controller {
 
   public function __construct() {
     parent::__construct();
-    echo "users_controller construct called<br><br>";
   } 
   
   public function index() {
-    echo "Welcome to the users's department";
+    $this->template->content = View::instance( "v_users_index" );
+    $this->template->content->name = $this->user->first_name . " " . 
+      $this->user->last_name;
+    echo $this->template;
   }
   
   public function signup() {
-    echo "This is the signup page";
     $this->template->content = View::instance( 'v_users_signup' );
     echo $this->template;
   }
   
   public function p_signup() {
-    echo "starting p_signup";
     print_r( $_POST );
     $_POST['password'] = sha1(PASSWORD_SALT.$_POST['password'])	;
     $_POST['token'] = sha1(
@@ -32,9 +32,7 @@ class users_controller extends base_controller {
     echo "stored row in db";
   }
   
-  public function login() {
-    echo "This is the login page";
-    
+  public function login() {    
     $this->template->content = View::instance( 'v_users_login' );
     echo $this->template;
   }
@@ -51,7 +49,7 @@ class users_controller extends base_controller {
       Router::redirect('/users/login');
     } else {
       setcookie("token", $token, strtotime('+2 weeks'), '/' );
-      Router::redirect('/');
+      Router::redirect('/users/logged_in');
     }
   }
   
@@ -123,6 +121,13 @@ class users_controller extends base_controller {
 
     DB::instance(DB_NAME)->delete("users_users", $where_condition);
     Router::redirect('/posts/users');
+  }
+  
+  public function logged_in() {
+  }
+
+  public function p_change_profile () {
+    echo Debug::dump( $_POST );
   }
 
 } # end of the class
