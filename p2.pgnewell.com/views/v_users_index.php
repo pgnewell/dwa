@@ -7,9 +7,12 @@
        <a href='/posts/enter'>Enter Posts</a>
    </li>
    <li>
-        <a href='/users/list_followed'>See Followed users</a>
+        <a href='/posts/list_followed'>View Followed posts</a>
    </li>
    <li>
         <a href='/users/select_follow'>Follow Users</a>
+   </li>
+   <li>
+        <a href='/users/logout'>Logout</a>
    </li>
 </ul>

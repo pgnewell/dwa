@@ -9,6 +9,12 @@
 	    <td><?=Time::display($post['date'])  ?></td>
 	    <td><?=$post['author'] ?></td>
 	    <td><?=$post['message'] ?></td>
+	    <? if ($user_id && $user_id != $post['user']): ?>
+	      <td><? echo "<a href='/posts/like/".$post['id']."/".$user_id."'>Like</a>" ?></td>
+	    <? endif; ?>
+	    <? if ($user_id && $post['user'] == $user_id): ?>
+	      <td><? echo "<a href='/posts/delete/".$post['id']."'>Delete</a>" ?></td>
+	    <? endif; ?>
 	  </tr>
 
 	<? endforeach; ?>	

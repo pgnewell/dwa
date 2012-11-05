@@ -1,6 +1,7 @@
 <form method='POST' action='/users/p_change_profile'>
   Profile for user <h4> <?=$user->first_name?> <?=$user->last_name?></h4> <br>
    Email:   <?=$user->email?><br>
+   <?=$_SERVER['REQUEST_URI']?>
 <!--  
    Old Password:
    <input type='password' name='old_password'>

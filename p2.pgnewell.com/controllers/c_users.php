@@ -32,6 +32,7 @@ class users_controller extends base_controller {
     echo "stored row in db";
   }
   
+  // this is not really happening.
   public function p_change_profile() {
     print_r( $_POST );
     $_POST['token'] = sha1(
@@ -52,11 +53,7 @@ class users_controller extends base_controller {
   
   public function p_login() {
     $token = $this->userObj->login( $_POST['email'], $_POST['password'] );
-    
-    if (!$token)
-      Router::redirect('/users/login');
-    else
-       Router::redirect('/users');
+    Router::redirect('/');
   }
 
   private function save_stuff () {
@@ -100,7 +97,7 @@ class users_controller extends base_controller {
   }
 
   public function logout() {
-    $this->userObj->logout();
+    $this->userObj->logout($this->user->email);
     Router::redirect("/");
   }
   
