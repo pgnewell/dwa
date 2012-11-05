@@ -1,14 +1,7 @@
-<form method='POST' action='/users/p_change_profile'>
+<? if ($user): ?>
   Profile for user <h4> <?=$user->first_name?> <?=$user->last_name?></h4> <br>
-   Email:   <?=$user->email?><br>
-<!--  
-   Old Password:
-   <input type='password' name='old_password'>
-   Changed Password:
-   <input type='password' name='new_password'>
-   Confirm:
-   <input type='password' name='confirm_password'>
-
-  <input type='submit' value='Make changes'> -->
-
-</form>
+  Email:   <?=$user->email?><br>
+  <? require "v_posts_list.php" ?>
+<? else: ?>
+  <h2>You are not a user!</h2>
+<? endif; ?>

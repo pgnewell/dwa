@@ -18,6 +18,9 @@ class DB {
 	# debugging, don't send queries
 	public static $debug = FALSE;
 
+	# bad for multi-tasking but we have our limits here
+	public static $ignore_errors = FALSE;
+
 	# store all queries
 	public $query_history = array();
 	
@@ -123,7 +126,7 @@ class DB {
 		$this->query_benchmarks[] = number_format(microtime(TRUE) - $this->benchmark_start, 4);
 		
 		# handle MySQL errors
-		if (! $result) {
+		if (! ($result || self::$ignore_errors)) {
 			
 			# don't show error and sql query in production
 			if (IN_PRODUCTION) {
@@ -581,6 +584,9 @@ class DB {
 		return $data;
 	
 	}
+	
+	# I know this is bad but I'm doing it anyway
+	public static function ignore_errors( $ignore = FALSE ) { self::$ignore_errors = $ignore; }
 	
 	
 }

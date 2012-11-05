@@ -6,6 +6,15 @@
   padding-left: 30px;
   background-image: url(../images/paper.png);
 }
+
+.main-mini-blog {
+  border: 0px solid black;
+  margin: 0px auto;
+  width: 1000px;
+  padding-right: 30px;
+  padding-left: 30px;
+  background-image: url(../images/paper.png);
+}
 h1 {
   border: 0px solid black;
   text-align: center;
@@ -25,6 +34,7 @@ h3 {
   width: 500px;
   clear: both;
 }
+
 .left-column {
   border: 0px solid black;
   margin: 0px;
@@ -44,4 +54,92 @@ h3 {
   border: 0px solid red;
   clear: both;
   padding-bottom: 20px;
+}
+
+.content-block {
+  border: 0px solid black
+  margin: 0px
+  padding: 5px
+  float: left
+  width: 520px
+}
+
+.post-line {
+  border: 0px solid black
+  margin: 0px
+  padding: 5px
+  float: left
+  width: 500px
+}
+
+.post-author {
+  border: 0px solid black
+  margin: 0px
+  padding: 5px
+  float: left
+  width: 250px
+}
+
+.post-date {
+  border: 0px solid black
+  margin: 0px
+  padding: 5px
+  float: left
+  width: 100px
+}
+
+.post-del {
+  border: 0px solid black
+  margin: 0px
+  padding: 5px
+  float: left
+  width: 60px
+}
+
+.post-like {
+  border: 0px solid black
+  margin: 0px
+  padding: 5px
+  float: right
+  width: 60px
+}
+
+.post-content {
+  border: 0px solid black
+  margin: 0px
+  padding: 5px
+  float: left
+  width: 450px
+}
+
+.user-line {
+  border: 0px solid black
+  margin: 0px
+  padding: 5px
+  float: left
+  width: 500px
+}
+
+.user-name {
+  border: 0px solid black
+  margin: 0px
+  padding: 5px
+  float: left
+  width: 300px
+}
+
+.user-follow {
+  border: 0px solid black
+  margin: 0px
+  padding: 5px
+  float: right
+  width: 200px
+}
+
+.side-menu {
+  border: 1px solid black
+  margin: 0px
+  padding: 5px
+  float: right
+  width: 250px
 }
