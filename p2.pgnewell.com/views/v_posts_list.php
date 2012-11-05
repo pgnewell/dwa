@@ -26,9 +26,9 @@
 <table border="0" style="background-color:#FFFFCC" width="700" cellpadding="0" cellspacing="2">
   <? foreach($posts as $key => $post): ?>
   <tr>	
-    <td width='30%'>Date: <?=Time::display($post['date'])  ?></td>
+    <td width='40%'>Date: <?=Time::display($post['date'])  ?></td>
     <td width='50%'>By: <?=$post['author'] ?></td>
-    <td width='20%'>
+    <td width='10%'>
       <? if (array_key_exists('action', $post)): ?>
         <?=$post['action'] ?>
       <? endif; ?>

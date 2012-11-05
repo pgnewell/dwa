@@ -1,0 +1,12 @@
+This is a microblog
+
+I should logging in signing up, creating posts and reading the posts that others have written or all posts.
+
+There are two added features, deleting a post that you have written and liking a post that someone else has written.
+
+Well you can probably like your own post but I will try to stop that.
+
+When you enter the site all posts are displayed in order of likes.
+
+The navigation is not really clean. after liking or deleting a post it should return to the proper page but I can't get that to work yet.
+

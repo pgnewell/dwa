@@ -11,7 +11,7 @@ class base_controller {
   public $content_title;
 
   # this is where the site should redirect back when it gets lost
-  public $base = "/posts";
+  public static $base = "/posts";
 
   private $menu = "v_index_guest";
 

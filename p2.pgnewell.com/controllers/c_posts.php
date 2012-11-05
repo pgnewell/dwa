@@ -24,20 +24,21 @@ class posts_controller extends base_controller {
 
   # this is the landing page show all posts with the most liked at the top
   public function index() {
-    $this->base = "/posts";
+    self::$base = "/posts";
     $this->_display( $this->_all_posts_by_liked() );
   }
 
   # this just shows the posts the user us following. 
   # here the user is presented with the option to like or unlike (remove the like, not dislike)
   public function followed_posts() {
-    $this->base = "/posts/followed_posts";
+    self::$base = "/posts/followed_posts";
     $this->_display( $this->_followed_posts_by_date() );
   }
 
   # this is really the user profile page. since we want to display posts and the 
   # post selects are all here it seems easier.
   public function my_posts() {
+    self::$base = "/posts/my_posts";
     // this got shifted from users so the conventions are a bit off
     $this->template->content = View::instance( "v_users_profile" );
     if($this->user) {
@@ -49,7 +50,7 @@ class posts_controller extends base_controller {
       $this->template->content->user = $user;
 
       $query = $this->_my_posts_by_date();
-      echo $query;
+      // echo $query;
       $posts = DB::instance( DB_NAME )->select_rows($query);
       $this->template->content->posts = $posts;
     }
@@ -75,8 +76,8 @@ class posts_controller extends base_controller {
       $user_id = $this->user->user_id;
 
     // create the links for like and unlike
-    $likes = "CONCAT( '<a href=''/posts/like/', p.post_id, '/', p.user_id, '''>Like<a>')";
-    $unlikes = "CONCAT( '<a href=''/posts/unlike/', p.post_id, '/', p.user_id, '''>Unlike<a>')";
+    $likes = "CONCAT( '<a href=''/posts/like/', p.post_id, '/', uu.user_id, '''>Like<a>')";
+    $unlikes = "CONCAT( '<a href=''/posts/unlike/', p.post_id, '/', uu.user_id, '''>Unlike<a>')";
 
     // the like links will use an outer join so l.post_id will be null where no like is done
     $query = 
@@ -140,24 +141,23 @@ class posts_controller extends base_controller {
   public function like ($post_id, $user_id) {
     // I don't really care if this fails on duplicates and that's the only error that can possibly 
     // happen ... Umm ... right? I added this nasty function to DB, by the way.
-    DB::ignore_errors( true );
+    //DB::ignore_errors( true );
     DB::instance(DB_NAME)->insert('likes',Array('user_id' => $user_id, 'post_id' => $post_id));
-    DB::ignore_errors( false );
-    Router::redirect( "/" );
-
+    //DB::ignore_errors( false );
+    Router::redirect( "/posts/followed_posts" );
   }
 
   # unlike just deletes the like
   public function unlike ($post_id, $user_id) {
     DB::instance(DB_NAME)->delete('likes','WHERE user_id = '. $user_id . ' AND post_id = '. $post_id);
-    Router::redirect( "/" );
+    Router::redirect( "/posts/followed_posts" );
   }
 
   #simple - delete any likes and the post
   public function delete ($post_id) {
     DB::instance(DB_NAME)->delete('likes','WHERE post_id = '. $post_id);
     DB::instance(DB_NAME)->delete('posts','WHERE post_id = '. $post_id);
-    Router::redirect( "/" );
+    Router::redirect( "/posts/my_posts" );
   }
 
   # not used

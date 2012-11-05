@@ -12,7 +12,7 @@ class users_controller extends base_controller {
 
   # this redirects to post since that is where all the queries are done on posts
   public function profile($user_id = NULL) {
-    $this->base = "/posts/my_posts";
+    self::$base = "/posts/my_posts";
     Router::redirect( "/posts/my_posts" );
   }
 
@@ -46,7 +46,7 @@ class users_controller extends base_controller {
     $_POST['modified'] = Time::now();
     DB::instance(DB_NAME)->update("users", $data, "WHERE id = '".$this->user->user_id."'");
     print_r( $_POST );
-    echo "stored row in db";
+    // echo "stored row in db";
   }
 
   # not used
