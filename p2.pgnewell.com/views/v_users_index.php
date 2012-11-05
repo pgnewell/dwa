@@ -1,4 +1,3 @@
-<?=$name?>
 <ul>
    <li>
       <a href='/users/profile'>See profile</a>

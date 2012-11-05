@@ -5,21 +5,24 @@ class users_controller extends base_controller {
     parent::__construct();
   } 
   
+  # seems appropriate that this should be the profile
   public function index() {
-    $this->template->content = View::instance( "v_users_index" );
-    $this->template->content->name = $this->user->first_name . " " . 
-      $this->user->last_name;
-    echo $this->template;
+    Router::redirect("/posts/my_posts");
   }
-  
+
+  # this redirects to post since that is where all the queries are done on posts
+  public function profile($user_id = NULL) {
+    $this->base = "/posts/my_posts";
+    Router::redirect( "/posts/my_posts" );
+  }
+
   public function signup() {
     $this->template->content = View::instance( 'v_users_signup' );
     echo $this->template;
   }
   
   public function p_signup() {
-    print_r( $_POST );
-    $_POST['password'] = Users::hash_password($_POST['password'])	;
+    $_POST['password'] = User::hash_password($_POST['password'])	;
     $_POST['token'] = sha1(
 			   TOKEN_SALT.
 			   $_POST['email'].
@@ -28,8 +31,8 @@ class users_controller extends base_controller {
     $_POST['created'] = Time::now();
     $_POST['modified'] = Time::now();
     DB::instance(DB_NAME)->insert('users', $_POST);
-    print_r( $_POST );
-    echo "stored row in db";
+    // print_r( $_POST );
+    Router::redirect("/");
   }
   
   // this is not really happening.
@@ -45,17 +48,20 @@ class users_controller extends base_controller {
     print_r( $_POST );
     echo "stored row in db";
   }
-  
+
+  # not used
   public function login() {    
     $this->template->content = View::instance( 'v_users_login' );
     echo $this->template;
   }
-  
+
+  # called from v_users_login
   public function p_login() {
     $token = $this->userObj->login( $_POST['email'], $_POST['password'] );
     Router::redirect('/');
   }
 
+  # just so I don't lose this
   private function save_stuff () {
     $_POST['password'] = sha1(PASSWORD_SALT . $_POST['password']);
     $token = DB::instance(DB_NAME)->sanitize($_POST);
@@ -68,6 +74,8 @@ class users_controller extends base_controller {
       setcookie("token", $token, strtotime('+2 weeks'), '/' );
   }
 
+  # use an outer join and build action links from that
+  # probably should follow the posts method for this
   public function select_follow( $user_id = NULL ) {
     if ($user_id == NULL)
       $user_id = $this->user->user_id;
@@ -96,47 +104,31 @@ class users_controller extends base_controller {
     echo Debug::dump( $this->user );
   }
 
+  # sure hope this works
   public function logout() {
     $this->userObj->logout($this->user->email);
     Router::redirect("/");
   }
-  
+
+  # not used
   public function save_some_stuff() {
-	# Generate and save a new token for next login
-	$new_token = sha1(TOKEN_SALT.$this->user->email.Utils::generate_random_string());
-	
-	# Create the data array we'll use with the update method
-	# In this case, we're only updating one field, so our array only has one entry
-	$data = Array("token" => $new_token);
-	
-	# Do the update
-	DB::instance(DB_NAME)->update("users", $data, "WHERE token = '".$this->user->token."'");
-	
-	# Delete their token cookie - effectively logging them out
-	setcookie("token", "", strtotime('-1 year'), '/');
-	
-	# Send them back to the main landing page
-  }
-  public function profile($user_id = NULL) {
-    $this->template->content = View::instance( 'v_users_profile' );
- 
-    $user = $this->user;
+    # Generate and save a new token for next login
+    $new_token = sha1(TOKEN_SALT.$this->user->email.Utils::generate_random_string());
     
-    if($user_id != NULL) {
-      # Load user from DB
-      $q = "SELECT *
-	    FROM users
-	    WHERE user_id = ".$user_id ;	
-      
-      $user = DB::instance(DB_NAME)->select_row($q, "object");
-    }
-
-    $this->template->content->user = $user;
-
-    echo $this->template;
-
+    # Create the data array we'll use with the update method
+    # In this case, we're only updating one field, so our array only has one entry
+    $data = Array("token" => $new_token);
+    
+    # Do the update
+    DB::instance(DB_NAME)->update("users", $data, "WHERE token = '".$this->user->token."'");
+    
+    # Delete their token cookie - effectively logging them out
+    setcookie("token", "", strtotime('-1 year'), '/');
+    
+    # Send them back to the main landing page
   }
 
+  # adds to user_user table
   public function follow($user_id_followed = NULL) {
     DB::instance(DB_NAME)->insert("users_users", 
 				  Array('created' => Time::now(),
@@ -146,6 +138,7 @@ class users_controller extends base_controller {
     Router::redirect("/users/select_follow");
   }
 
+  # removes from  user_user table
   public function unfollow($user_id_followed = NULL) {    
     $where_condition = "WHERE followed =".$user_id_followed." 
 	       AND user_id= ".$this->user->id;
@@ -153,7 +146,8 @@ class users_controller extends base_controller {
     DB::instance(DB_NAME)->delete("users_users", $where_condition);
     Router::redirect('/posts/users');
   }
-  
+
+  # not sure what I was thinking
   public function logged_in() {
   }
 
