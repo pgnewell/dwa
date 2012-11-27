@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>DWA Project 3</title>
+		<link rel="stylesheet" href="./css/class.css" type="text/css">
+		<link rel="stylesheet" href="./css/recipe.css" type="text/css">
+	    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
+    	<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    	<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+ 		<script type="text/javascript" src="./js/scripts.js"></script>
+		<meta name="description" content="Paul Newell's third project proposal">
+	</head>
+	<body>
+<h1>DWA Project 3 Proposal</h1>
+<h2>A Recipe builder</h2>
+<h3>by Paul Newell</h3>
+<p>
+This project would build a recipe from a pallete of available
+steps. Steps would include things like bake, stir, cool, etc. but also
+mis-en-place, which would have associated elements, namely
+ingredients. For each step dependencies on other steps could be
+recorded. Recipes would be recorded in XML as would the information
+related to the steps. You could then execute the recipe, which would
+display the available steps (the ones with no or completed
+dependencies) and check them as done.
+</p>
+<div id="recipe-block">
+	<div id="recipe-content">
+		<div class="recipe-step droppable">
+			<p>step</p>
+		</div>
+	</div>
+	<div id="recipe-palette">
+		<div class="icon-block draggable">
+			<img src="./images/stir.jpg"/>
+		</div>
+		<div class="icon-block draggable">
+			<img src="./images/mipl.jpg"/>
+		</div>
+		<div class="icon-block draggable">
+			<img src="./images/fold.jpg"/>
+		</div>
+		<div class="icon-block draggable">
+			<img src="./images/bake.jpg"/>
+		</div>
+		<div class="icon-block draggable">
+			<img src="./images/roll.jpg"/>
+		</div>
+		<div class="icon-block draggable">
+			<img src="./images/chop.jpg"/>
+		</div>
+		<div class="icon-block draggable">
+			<img src="./images/chill.png"/>
+		</div>
+	</div>
+<p class='clear'></p>
+</div>
+
+<p class='clear'>
+<div>
+Related sites:
+<a href='http://www.cookingforengineers.com/'>Cooking for
+engineers</a> Doesn't have a recipe builder but the format for
+displaying recipes intrigues me. <br>
+<a href='http://www.weightwatchers.com'>Weight Watchers</a> This has a
+recipe builder but I haven't used it<br>
+There is a place called FitClick that claims to but doesn't, so that
+can be inspiring too.
+</p>
+</div>
+
+</body>
+</html>

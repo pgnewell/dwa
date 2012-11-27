@@ -60,7 +60,7 @@ h3 {
   border: 0px solid black;
   margin: 0px;
   padding: 5px;
-  float: right;
+  float: left;
   width: 520px;
 }
 
@@ -140,6 +140,6 @@ h3 {
   border: 1px solid black;
   margin: 0px;
   padding: 5px;
-  float: right;
+  float: left;
   width: 250px;
 }

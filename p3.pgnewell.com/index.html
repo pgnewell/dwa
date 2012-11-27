@@ -2,34 +2,122 @@
 <html>
 	<head>
 		<title>DWA Project 3</title>
-		<link rel="stylesheet" href="../css/class.css" type="text/css">
-		<!--<script type="text/javascript" src="/path/to/scripts.js"></script>-->
-		<meta name="description" content="Paul Newell's first project submission">
+		<link rel="stylesheet" href="./css/class.css" type="text/css">
+		<link rel="stylesheet" href="./css/recipe.css" type="text/css">
+	    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
+    	<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    	<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+ 		<script type="text/javascript" src="./js/scripts.js"></script>
+		<meta name="description" content="Paul Newell's third project proposal" charset="UTF-8">
 	</head>
 	<body>
-<h1>DWA Project 3 Proposal</h1>
-<h2>A Recipe builder</h2>
-<h3>by Paul Newell</h3>
-<p>
-This project would build a recipe from a pallete of available
-steps. Steps would include things like bake, stir, cool, etc. but also
-mis-en-place, which would have associated elements, namely
-ingredients. For each step dependencies on other steps could be
-recorded. Recipes would be recorded in XML as would the information
-related to the steps. You could then execute the recipe, which would
-display the available steps (the ones with no or completed
-dependencies) and check them as done.
-</p>
-<p>
-Related sites:
-<a href='http://www.cookingforengineers.com/'>Cooking for
-engineers</a> Doesn't have a recipe builder but the format for
-displaying recipes intrigues me. <br>
-<a href='http://www.weightwatchers.com'>Weight Watchers</a> This has a
-recipe builder but I haven't used it<br>
-There is a place called FitClick that claims to but doesn't, so that
-can be inspiring too.
-</p>
+<!--
+	<h1>DWA Project 3</h1>
+	<h2>A Recipe builder</h2>
+	<h3>by Paul Newell</h3>
+-->
+<!-- 
+	Recipe block splits into two columns one for the recipe being built 
+	and one for the pallet, the list of types of steps you can add
+  -->
+	<div id="recipe-block">
+<!--
+	content starts with three blocks one for the header, one for the footer which is 
+	like the last step but it isn't really useful any more now that the drag and 
+	drop is gone and one for the message for any error messages.
+  -->
+		<div id="recipe-content">
+			<div id="recipe-header"><h4>Description</h4></div>
+			<div id="recipe-step-list">
+				<div id='recipe-footer' class="recipe-step droppable">
+					<p>click on a step icon on right</p>
+				</div>
+			</div>
+			<div id="message-block"></div>
+		</div>
+<!--
+	pallet has the images that pass as icons for possible steps in a recipe, there are 
+	probably not nearly enough but this is just to get the idea. The block include the 
+	form which will only become apparent whey the item is selected and transfered
+	to the content column
+	most of the forms are identical - not sure how to do this DIY - would love to know
+  -->
+		<div id="recipe-palette">
+			<div class="icon-block draggable">
+				<img src="./images/stir.jpg" alt="stir" title="stir"/>
+				<form class='hide'>
+					<div class="droppable">
+						<textarea class="recipe-textarea" onfocus="this.value='';">
+							enter description here
+						</textarea>
+					</div>
+				</form>
+			</div>
+			<div class="icon-block draggable">
+				<img src="./images/mipl.jpg" alt="mis-en-place" title="mis-en-place"/>
+				<form class='hide'>
+					<div class="droppable">
+						<textarea class="recipe-textarea" onfocus="this.value='';">
+							enter description here
+						</textarea>
+					</div>
+				</form>
+			</div>
+			<div class="icon-block draggable">
+				<img src="./images/fold.jpg" alt="fold" title="fold"/>
+				<form class='hide'>
+					<div class="droppable">
+						<textarea class="recipe-textarea" onfocus="this.value='';">
+							enter description here
+						</textarea>
+					</div>
+				</form>
+			</div>
+			<div class="icon-block draggable">
+				<img src="./images/bake.jpg" alt="bake" title="bake"/>
+				<form class='hide'>
+					<div class="droppable">
+						<textarea class="recipe-textarea" onfocus="this.value='';">
+							enter description here
+						</textarea>
+					</div>
+				</form>
+			</div>
+			<div class="icon-block draggable">
+				<img src="./images/roll.jpg" alt="roll" title="roll"/>
+				<form class='hide'>
+					<div class="droppable">
+						<textarea class="recipe-textarea" onfocus="this.value='';">
+							enter description here
+						</textarea>
+					</div>
+				</form>
+			</div>
+			<div class="icon-block draggable">
+				<img src="./images/chop.jpg" alt="chop" title="chop"/>
+				<form class='hide'>
+					<div class="droppable">
+						<textarea class="recipe-textarea" onfocus="this.value='';">
+							enter description here
+						</textarea>
+					</div>
+				</form>
+			</div>
+			<div class="icon-block draggable">
+				<img src="./images/chill.png" alt="chill" title="chill"/>
+				<form class='hide'>
+					<div class="droppable">
+						<textarea class="recipe-textarea" onfocus="this.value='';">
+							enter description here
+						</textarea>
+					</div>
+				</form>
+			</div>
+		</div>
+		<p class='clear'></p>
+	</div>
+	
+	<p class='clear'>
 
 </body>
 </html>
