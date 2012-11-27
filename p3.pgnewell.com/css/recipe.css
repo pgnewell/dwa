@@ -1,0 +1,83 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+#recipe-block {
+  border: 1px solid black;
+  width: 50%;
+  background-image: url(../images/paper.png);
+}
+
+#recipe-palette {
+  border: 1px solid green;
+  margin: 0px auto;
+  width: 20%;
+  float: right;
+  background-image: url(../images/paper.png);
+  height: 100%;
+}
+
+#recipe-content {
+  margin: 3px;
+  border: 1px solid red;
+  height: 100%;
+  float: left;
+  width: 76%;
+}
+
+#recipe-content-header {
+  height: 50px;
+  width: 100%;
+  background-color:	#8FBC8F;
+}
+
+.recipe-step {
+  border: 1px dotted orange;
+  width: 100%;
+  background-color: #E0E0E0;
+}
+
+.icon-block {
+  border: 0px solid blue;
+  margin: 0px auto;
+  width: 25px;
+  height: 25px;
+  padding-right: 3px;
+  padding-left: 0px;
+  padding-top: 3px;
+  float: left;
+}
+.clear {
+	clear: both;
+}
+
+.step-icon {
+	cursor:pointer;
+}
+
+.draggable {
+	cursor:move;
+}
+
+.new-draggable {
+	position:absolute;
+	top:0px;
+	left:0px;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+.recipe-textarea {
+  fold: left;
+  height: 20px;
+  width: 30;
+}
+
+#message-block {
+  height: 20px
+  width: 100%;
+}
+
