@@ -16,22 +16,28 @@ var Recipe = {
 	-------------------------------------------------------------------------------------------------*/
 	add_step: function(step_type, step_id, description, deps) {
 
-		var this_step = [];
+		var this_step = {};
 		
-		this_step['type'] = step_type;
-		this_step['id'] = step_id;
-		this_step['desc'] = description;
-		this_step['dependents'] = deps;
-		this.steps[this.steps.length] = this_step;
+		this_step.type= step_type;
+		this_step.desc = description;
+		this_step.dependents = deps;
+		this.steps[step_id] = this_step;
 
 	},	
 
-	/*-------------------------------------------------------------------------------------------------
-	@return void
-	-------------------------------------------------------------------------------------------------*/
-	execute: function() {
+	delete_step: function (step_id ) {
+		delete this_step[step_id];
 	},
 	
+	is_empty: function () {
+		for (var item in steps) {
+    		if (steps.hasOwnProperty.call(item)) {
+    			return false;
+      		}
+      	}
+	  	return true;
+    },
+
 	/*-------------------------------------------------------------------------------------------------
 	@param {string} step - step id of function depended upon
 	@return void

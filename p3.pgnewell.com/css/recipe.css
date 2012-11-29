@@ -3,7 +3,7 @@
   padding: 0px;
 }
 
-#recipe-block {
+#recipe-block, #recipe-execution {
   border: 1px solid black;
   width: 50%;
   background-image: url(../images/paper.png);
