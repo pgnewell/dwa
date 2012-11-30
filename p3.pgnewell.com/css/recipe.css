@@ -45,21 +45,13 @@
   height: 25px;
 }
 
-.icon-block img {
-  float: left;
-}
+.icon-block img,.recipe-step img,recipe-step textarea,.step-instructions label { float: left; }
 
-.clear {
-	clear: both;
-}
+.clear { clear: both; }
 
-.step-icon {
-	cursor:pointer;
-}
+.step-icon { cursor:pointer; }
 
-.draggable {
-	cursor:move;
-}
+.draggable { cursor:move; }
 
 .new-draggable {
 	position:absolute;
