@@ -23,6 +23,86 @@
   -->
 	<div id="recipe-block">
 <!--
+	palette has the images that pass as icons for possible steps in a recipe, there are 
+	probably not nearly enough but this is just to get the idea. The block include the 
+	form which will only become apparent whey the item is selected and transfered
+	to the content column
+	most of the forms are identical - not sure how to do this DRY - add buttons later 
+	from above
+  -->
+		<div id="recipe-palette">
+			<div class="icon-block icon-click">
+				<img src="./images/stir.jpg" alt="stir" title="stir"/>
+				<div class='caption'>stir</div>
+				<div class='step-instructions hide'>
+					<label>enter instructions here</label>
+					<textarea class="recipe-textarea" onfocus="this.value='';">
+					</textarea>
+				</div>
+				<div class='step-actions hide'></div>
+			</div>
+			<div class="icon-block icon-click">
+				<img src="./images/mipl.jpg" alt="mis-en-place" title="mis-en-place"/>
+				<div class='caption'>mis-en-place</div>
+				<div class='step-instructions hide'>
+					<label>enter ingredient list here</label>
+					<textarea class="recipe-textarea" onfocus="this.value='';">
+					</textarea>
+				</div>
+				<div class='step-actions hide'></div>
+			</div>
+			<div class="icon-block icon-click">
+				<img src="./images/fold.jpg" alt="fold" title="fold"/>
+				<div class='caption'>fold</div>
+				<div class='step-instructions hide'>
+					<label>enter instructions here</label>
+					<textarea class="recipe-textarea" onfocus="this.value='';">
+					</textarea>
+				</div>
+				<div class='step-actions hide'></div>
+			</div>
+			<div class="icon-block icon-click">
+				<img src="./images/bake.jpg" alt="bake" title="bake"/>
+				<div class='caption'>bake</div>
+				<div class='step-instructions hide'>
+					<label>enter instructions here</label>
+					<textarea class="recipe-textarea" onfocus="this.value='';">
+					</textarea>
+				</div>
+				<div class='step-actions hide'></div>
+			</div>
+			<div class="icon-block icon-click">
+				<img src="./images/roll.jpg" alt="roll" title="roll"/>
+				<div class='caption'>roll</div>
+				<div class='step-instructions hide'>
+					<label>enter instructions here</label>
+					<textarea class="recipe-textarea" onfocus="this.value='';">
+					</textarea>
+				</div>
+				<div class='step-actions hide'></div>
+			</div>
+			<div class="icon-block icon-click">
+				<img src="./images/chop.jpg" alt="chop" title="chop"/>
+				<div class='caption'>chop</div>
+				<div class='step-instructions hide'>
+					<label>enter instructions here</label>
+					<textarea class="recipe-textarea" onfocus="this.value='';">
+					</textarea>
+				</div>
+				<div class='step-actions hide'></div>
+			</div>
+			<div class="icon-block icon-click">
+				<img src="./images/chill.png" alt="chill" title="chill"/>
+				<div class='caption'>chill</div>
+				<div class='step-instructions hide'>
+					<label>enter instructions here</label>
+					<textarea class="recipe-textarea" onfocus="this.value='';">
+					</textarea>
+				</div>
+				<div class='step-actions hide'></div>
+			</div>
+		</div>
+<!--
 	content starts with three blocks - one for the header, one for the footer which is 
 	like the last step but it isn't really useful any more now that the drag and 
 	drop is gone and one for the message for any error messages.
@@ -51,82 +131,10 @@
 			</div>
 
 			</div>
+			<p class='clear'></p>
 		</div>
-<!--
-	palette has the images that pass as icons for possible steps in a recipe, there are 
-	probably not nearly enough but this is just to get the idea. The block include the 
-	form which will only become apparent whey the item is selected and transfered
-	to the content column
-	most of the forms are identical - not sure how to do this DRY - add buttons later 
-	from above
-  -->
-		<div id="recipe-palette">
-			<div class="icon-block icon-click">
-				<img src="./images/stir.jpg" alt="stir" title="stir"/>
-				<div class='step-instructions hide'>
-					<label>enter instructions here</label>
-					<textarea class="recipe-textarea" onfocus="this.value='';">
-					</textarea>
-				</div>
-				<div class='step-actions hide'></div>
-			</div>
-			<div class="icon-block icon-click">
-				<img src="./images/mipl.jpg" alt="mis-en-place" title="mis-en-place"/>
-				<div class='step-instructions hide'>
-					<label>enter ingredient list here</label>
-					<textarea class="recipe-textarea" onfocus="this.value='';">
-					</textarea>
-				</div>
-				<div class='step-actions hide'></div>
-			</div>
-			<div class="icon-block icon-click">
-				<img src="./images/fold.jpg" alt="fold" title="fold"/>
-				<div class='step-instructions hide'>
-					<label>enter instructions here</label>
-					<textarea class="recipe-textarea" onfocus="this.value='';">
-					</textarea>
-				</div>
-				<div class='step-actions hide'></div>
-			</div>
-			<div class="icon-block icon-click">
-				<img src="./images/bake.jpg" alt="bake" title="bake"/>
-				<div class='step-instructions hide'>
-					<label>enter instructions here</label>
-					<textarea class="recipe-textarea" onfocus="this.value='';">
-					</textarea>
-				</div>
-				<div class='step-actions hide'></div>
-			</div>
-			<div class="icon-block icon-click">
-				<img src="./images/roll.jpg" alt="roll" title="roll"/>
-				<div class='step-instructions hide'>
-					<label>enter instructions here</label>
-					<textarea class="recipe-textarea" onfocus="this.value='';">
-					</textarea>
-				</div>
-				<div class='step-actions hide'></div>
-			</div>
-			<div class="icon-block icon-click">
-				<img src="./images/chop.jpg" alt="chop" title="chop"/>
-				<div class='step-instructions hide'>
-					<label>enter instructions here</label>
-					<textarea class="recipe-textarea" onfocus="this.value='';">
-					</textarea>
-				</div>
-				<div class='step-actions hide'></div>
-			</div>
-			<div class="icon-block icon-click">
-				<img src="./images/chill.png" alt="chill" title="chill"/>
-				<div class='step-instructions hide'>
-					<label>enter instructions here</label>
-					<textarea class="recipe-textarea" onfocus="this.value='';">
-					</textarea>
-				</div>
-				<div class='step-actions hide'></div>
-			</div>
-		</div>
-		<p class='clear'></p>
 	</div>
+
 <!--
 	This is the execution block. it has a sample execution item which the script will use
 	as a basis for its blocks. the program will display	all steps with no dependencies. 
@@ -142,7 +150,7 @@
 		</div>
 	</div>
 	
-	<p class='clear'>
+	<p class='clear'></p>
 
 </body>
 </html>
