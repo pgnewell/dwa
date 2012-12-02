@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>DWA Project 3</title>
+		<link rel="stylesheet" href="./css/class.css" type="text/css">
+		<link rel="stylesheet" href="./css/recipe.css" type="text/css">
+	    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
+    	<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    	<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+ 		<script type="text/javascript" src="./js/recipe-class.js"></script>
+ 		<script type="text/javascript" src="./js/scripts.js"></script>
+		<meta name="description" content="Paul Newell's third project" charset="UTF-8">
+	</head>
+	<body>
+
+	<h1>A Recipe builder</h1>
+	<h2>DWA Project 3</h2>
+	<h3>
+		<p>
+	To build a recipe click on the icon on the left to create a space to fill in
+	instructions on the right. A text box will appear which can be completed with the 
+	instructions for that step. When complete click done and the step will be saved and
+	the next can be entered in the same way. You can cancel any step that you are in the
+	process of filling in or delete it after it is saved. When done click "Execute" and 
+	a window will appear of the steps to be done and you can click on each as it is 
+	completed. 
+		</p> <br/>
+		<p>To create a dependency click on the step that is dependent on another step
+	and the other steps' depends buttons should become "depends on". Click the one that 
+	the step depends on and the buttons should revert. This actually doesn't work 
+	properly because an additional signal is sent causing one of the steps to 
+	turn again<br/><br/>
+		</p>
+	</h3>
+
+<!-- 
+	Recipe block splits into two columns one for the recipe being built 
+	and one for the pallet, the list of types of steps you can add
+  -->
+	<div id="recipe-block">
+<!--
+	palette has the images that pass as icons for possible steps in a recipe, there are 
+	probably not nearly enough but this is just to get the idea. The block include the 
+	form which will only become apparent whey the item is selected and transfered
+	to the content column
+	most of the forms are identical - not sure how to do this DRY - add buttons later 
+	from above
+  -->
+		<div id="recipe-palette">
+			<h4>Step types</h4	>
+			<div class="icon-block icon-click">
+				<img src="./images/stir.jpg" alt="stir" title="stir"/>
+				<div class='caption'>stir</div><div class="clear"></div>
+				<div class='step-instructions hide'>
+					<br><label>enter instructions here</label>
+					<textarea class="recipe-textarea" onfocus="this.value='';">
+					</textarea><br>
+				</div>
+				<div class='step-actions hide'></div>
+			</div>
+			<div class="icon-block icon-click">
+				<img src="./images/mipl.jpg" alt="mis-en-place" title="mis-en-place"/>
+				<div class='caption'>mis-en-place</div><div class="clear"></div>
+				<div class='step-instructions hide'>
+					<br><label>enter ingredient list here</label>
+					<textarea class="recipe-textarea" onfocus="this.value='';">
+					</textarea><br>
+				</div>
+				<div class='step-actions hide'></div>
+			</div>
+			<div class="icon-block icon-click">
+				<img src="./images/fold.jpg" alt="fold" title="fold"/>
+				<div class='caption'>fold</div><div class="clear"></div>
+				<div class='step-instructions hide'>
+					<br><label>enter instructions here</label>
+					<textarea class="recipe-textarea" onfocus="this.value='';">
+					</textarea><br>
+				</div>
+				<div class='step-actions hide'></div>
+			</div>
+			<div class="icon-block icon-click">
+				<img src="./images/bake.jpg" alt="bake" title="bake"/>
+				<div class='caption'>bake</div><div class="clear"></div>
+				<div class='step-instructions hide'>
+					<br><label>enter instructions here</label>
+					<textarea class="recipe-textarea" onfocus="this.value='';">
+					</textarea><br>
+				</div>
+				<div class='step-actions hide'></div>
+			</div>
+			<div class="icon-block icon-click">
+				<img src="./images/roll.jpg" alt="roll" title="roll"/>
+				<div class='caption'>roll</div><div class="clear"></div>
+				<div class='step-instructions hide'>
+					<br><label>enter instructions here</label>
+					<textarea class="recipe-textarea" onfocus="this.value='';">
+					</textarea><br>
+				</div>
+				<div class='step-actions hide'></div>
+			</div>
+			<div class="icon-block icon-click">
+				<img src="./images/chop.jpg" alt="chop" title="chop"/>
+				<div class='caption'>chop</div><div class="clear"></div>
+				<div class='step-instructions hide'>
+					<br><label>enter instructions here</label>
+					<textarea class="recipe-textarea" onfocus="this.value='';">
+					</textarea><br>
+				</div>
+				<div class='step-actions hide'></div>
+			</div>
+			<div class="icon-block icon-click">
+				<img src="./images/chill.png" alt="chill" title="chill"/>
+				<div class='caption'>chill</div><div class="clear"></div>
+				<div class='step-instructions hide'>
+					<br><label>enter instructions here</label>
+					<textarea class="recipe-textarea" onfocus="this.value='';">
+					</textarea><br>
+				</div>
+				<div class='step-actions hide'></div>
+			</div>
+		</div>
+<!--
+	content starts with three blocks - one for the header, one for the footer which is 
+	like the last step but it isn't really useful any more now that the drag and 
+	drop is gone and one for the message for any error messages.
+  -->
+		<div id="recipe-content">
+			<div id="recipe-header">
+				<h4>Description</h4>
+			</div>
+			<div id="recipe-step-list">
+				<div id='recipe-footer' class="recipe-step droppable">
+					<p>click on a step icon on left</p>
+					<div class='execute-button'>
+						<input type='button' id='execute-recipe' value='Execute'>
+					</div>
+				</div>
+			</div>
+			<div id="message-block" class="hide"></div>
+			<div id="icon-buttons" class="hide">
+				<input type='button' class='class-done-button' value='Done'>
+				<input type='button' class='class-can-button' value='Cancel'>
+			<div id="after-buttons" class="hide">
+				<input type='button' class='class-del-button' value='Delete'>
+				<input type='button' class='class-depends-button' value='Depends'>
+			</div>
+			<div id="exec-done-button" class="hide">
+				<input type='button' class='exec-done-button' value='Done'>
+			</div>
+
+			</div>
+			<p class='clear'></p>
+		</div>
+<!--
+	This is the execution block. it has a sample execution item which the script will use
+	as a basis for its blocks. the program will display	all steps with no dependencies. 
+	When the user clicks on done the block disappears and all steps that were dependent 
+	on should appear. Ideally this would be in some order but that was not done
+  -->
+		<div id='recipe-execution' class='hide'>
+			<div id='sample-execute-block' class='hide'>
+				<div class='execute-instruction'>instructions go here</div>
+				<div class='execute-done'>
+					<input type='button' class='execute-done-button' value='Complete'>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+	<p class='clear'></p>
+
+</body>
+</html>
