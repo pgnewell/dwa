@@ -4,10 +4,9 @@ $(document).ready(function() { // start doc ready; do not delete this!
 	var edit_buttons = $('#icon-buttons').html();
 	// only one of these buttons should be active at a time so it can have an id
 	var new_edit_buttons = edit_buttons.replace( /class=\"class/g, 'id="id' );
-
 	var after_buttons = $('#after-buttons').html();
-	var done_button = $('#exec-done-button').html();
-
+	var dependant = '';
+	
 	// When the user clicks on a step icon it should create a dialog in the recipe 
 	// with the form included. Then turn off all the icon clickables
 	$(".icon-click").live ('click', function() {
@@ -15,9 +14,8 @@ $(document).ready(function() { // start doc ready; do not delete this!
 		new_box.addClass('recipe-step');
 		new_box.removeClass('icon-block icon-click');
 		new_box.find('.step-actions').html(new_edit_buttons);
-		new_box.id = Recipe.next_id();
+		new_box.attr('id',Recipe.next_id());
 		$("#recipe-footer").before( new_box );
-		// remove before adding to avoid confusing the browser
 		$('.icon-block').removeClass('icon-click');
 		$('.icon-block').addClass('icon-error');
 		new_box.find('.step-instructions').removeClass('hide');
@@ -33,22 +31,14 @@ $(document).ready(function() { // start doc ready; do not delete this!
 	// activate the two action buttons they should turn the icons-click back on
 	$('#id-done-button').live ('click', function() {
 		var box = $(this).parent().parent();
-		var step_type = box.find('img').attr('title');		
-		var instructions = box.find('textarea').val();
-		if (instructions.length == 0) {
+		if (box.find('textarea').val().length == 0) {
 			$('#message-block').html('Cannot add without instructions');
 			$('#message-block').removeClass('hide');
 		} else {
 			$('#message-block').html('');
 			$('#message-block').addClass('hide');
-			$('.icon-block').toggleClass('icon-error icon-click');
+			Recipe.add_step( box );
 			$(this).parent().html(after_buttons);
-			box.find('label').text('');
-			Recipe.add_step(step_type,box.id,instructions,[] );
-			box.find('textarea').attr('disabled','disabled'	);
-			var exec_box = box.clone();
-			exec_box.id = 'exec-'+box.id;
-			$('#recipe-execution').append( exec_box );
 		};
 	});
 
@@ -63,17 +53,32 @@ $(document).ready(function() { // start doc ready; do not delete this!
 	// delete removes an already filled out step - I'm not giving any warning or
 	// giving any option to change your mind
 	$('.class-del-button').live ('click', function() {
-		var some_id = $(this).parent().parent().id();
 		var box = $(this).parent().parent();
-		var this_id = box.id().replace( /exec-/, '' );
-		Recipe.delete( this_id );
-		box.remove();
-		
+		Recipe.delete_step( box );		
 	});
-	
+
+	// depends disables itself and makes all other depends buttons "depends on"
+	$('.class-depends-button').live ('click', function() {
+		dependant = $( this ).parent().parent().attr('id');
+		$( this ).removeClass( 'class-depends-button');
+		$( this ).addClass( 'dependant' );
+		$('.class-depends-button').toggleClass( 'class-depends-button depends-on' );
+		$('.depends-on')
+			.attr( 'value', 'Depends on' )
+			.click( function () {
+				var this_step = $( this ).parent().parent().attr('id');
+				Recipe.add_dependency( dependant, this_step );
+				$('.depends-on').addClass( 'class-depends-button' );
+				$('.depends-on').removeClass( 'depends-on' );
+				$('.class-depends-button').attr('value', 'Depends');
+				dependant = '';
+			});
+	});
+
 	// execute the recipe
-	$('#execute-recipe	').click ( function () {
-		Recipe.list_step();
+	$('#execute-recipe').click ( function () {
+		$('recipe-content').addClass( 'hide' );
+		$('recipe-palette').addClass( 'hide' );
 		$('#recipe-execution').removeClass('hide');
 	});
 

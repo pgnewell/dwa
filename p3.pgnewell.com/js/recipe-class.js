@@ -1,11 +1,22 @@
 /**
 */
 
+function is_empty(obj) {
+	for (var item in obj) {
+   		if (obj.hasOwnProperty.call(item)) {
+   			return false;
+   		}
+   	}
+ 	return true;
+}
+
+var done_button = $('#exec-done-button').html();
+
 var Recipe = {
 
 	steps: [],
 	last_id: 0,
-	
+
 	next_id: function () { return 'recipe-step-' + this.last_id++; },
 	
 	/*-------------------------------------------------------------------------------------------------
@@ -14,42 +25,57 @@ var Recipe = {
 	@param {string} description
 	@return void
 	-------------------------------------------------------------------------------------------------*/
-	add_step: function(step_type, step_id, description, deps) {
+	add_step: function(box) {
 
 		var this_step = {};
 		
+		var step_type = box.find('img').attr('title');
+		var step_id = box.attr( 'id' );		
+		var instructions = box.find('textarea').val();
+		$('.icon-block').toggleClass('icon-error icon-click');
+		box.find('label').text('');
+		box.find('textarea').attr('disabled','disabled'	);
+		var exec_box = box.clone();
+		exec_box.attr('id','exec-'+box.id);
+		exec_box.find('.step-actions').html(done_button);
+		$('#recipe-execution').append( exec_box );
+
 		this_step.type= step_type;
-		this_step.desc = description;
-		this_step.dependents = deps;
+		this_step.desc = instructions;
+		this_step.dependency = {};
 		this.steps[step_id] = this_step;
 
 	},	
 
-	delete_step: function (step_id ) {
-		delete this_step[step_id];
-	},
-	
-	is_empty: function () {
-		for (var item in steps) {
-    		if (steps.hasOwnProperty.call(item)) {
-    			return false;
-      		}
-      	}
-	  	return true;
-    },
+	// this should remove a step from the list and then show any dependent object that
+	// now has no dependencies
+	delete_step: function (box) {
+		var step_id = box.attr('id');
+		$('.depends-on-'+step_id).removeClass( 'depends-on-'+step_id );
 
-	/*-------------------------------------------------------------------------------------------------
-	@param {string} step - step id of function depended upon
-	@return void
-	-------------------------------------------------------------------------------------------------*/
-	turn_on_dependents: function (step) {
+		// doesn't work from some reason - istep doesn't the get objects in steps
+		for (var step in this.steps) {
+			var istep = this.steps[step];
+			if (istep.dependency.hasOwnProperty(step_id)) {
+				delete istep.dependency[step_id];
+				if (is_empty( istep.dependency )) {
+					$('.exec-'+step_id).removeGroup( 'hide' );
+				}
+			}
+		}				
+		box.remove();
+		delete this.steps[step_id];
+					
 	},
 	
-	is_done: function () {
-	},
+	// add a dependency should also att a class that makes it dependent (not really used)
+	add_dependency: function ( dependant, depended_upon ) {
+		this.steps[dependant].dependency = depended_upon;
+	},	
 	
+	is_empty: function () { is_empty( steps ) },
+
 	list_step: function() {	
-		debugger; 
 		console.log( this.steps ); 
 	},
 	

@@ -1,77 +1,49 @@
-* {
-  margin: 0px;
-  padding: 0px;
-}
+* { margin: 0px auto; padding: 0px; }
 
-#recipe-block, #recipe-execution {
+#recipe-block {
   border: 1px solid black;
-  width: 50%;
-  background-image: url(../images/paper.png);
+  width: 582px;
+  height: 640px;
 }
 
 #recipe-palette {
-  border: 1px solid green;
-  margin: 0px auto;
-  width: 20%;
-  float: right;
-  background-image: url(../images/paper.png);
-  height: 100%;
-}
-
-#recipe-content {
   margin: 3px;
-  border: 1px solid red;
-  height: 100%;
+  width: 166px;
   float: left;
-  width: 76%;
+  height: 600px;
+  background-color: #ededed;
 }
 
-#recipe-content-header {
-  height: 50px;
-  width: 100%;
-  background-color:	#8FBC8F;
-}
+#recipe-content { margin: 3px; width: 400px; float: left; 
+  background-color: #ededed; height: 600px; }
 
-.recipe-step {
-  border: 1px dotted orange;
-  width: 100%;
-  background-color: #E0E0E0;
-}
+#recipe-content-header { height: 50px; width: 100%; background-color:	#8FBC8F; }
 
-.icon-block {
-  border: 0px solid blue;
-  margin: 0px auto;
-  width: 25px;
-  height: 25px;
-  padding-right: 3px;
-  padding-left: 0px;
-  padding-top: 3px;
-  float: left;
-}
-.clear {
-	clear: both;
-}
+#recipe-execution { width: 200px; float: left; }
 
-.step-icon {
-	cursor:pointer;
-}
+div[class*="depends-on-"] { display: none; }
 
-.draggable {
-	cursor:move;
-}
+.recipe-step { margin: 2px; background-color: #E0E0E0; }
 
-.new-draggable {
-	position:absolute;
-	top:0px;
-	left:0px;
-}
+.icon-block { border: 1px solid blue; margin: 2px; width: 160px; height: 25px; }
 
-.hide {
-  visibility: hidden;
-}
+.icon-block img,.recipe-step img,recipe-step textarea,.step-instructions label 
+	{ float: left; }
+
+.clear { clear: both; }
+
+.step-icon { cursor:pointer; margin: 2px; }
+
+.step-actions { clear: both; }
+
+.draggable { cursor:move; }
+
+.new-draggable { position:absolute; top:0px; left:0px; }
+
+.hide { display: none; }
 
 .recipe-textarea {
-  fold: left;
+  float: left;
   height: 20px;
   width: 30;
 }
@@ -80,4 +52,12 @@
   height: 20px
   width: 100%;
 }
+
+.caption {
+  float: left;
+  padding-left: 10px;
+}
+
+#execute-button { float: right; }
+
 
