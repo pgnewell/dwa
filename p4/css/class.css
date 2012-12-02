@@ -1,0 +1,137 @@
+.main {
+  border: 0px solid black;
+  margin: 0px auto;
+  width: 550px;
+  padding-right: 30px;
+  padding-left: 30px;
+  background-image: url(../images/paper.png);
+}
+
+.main-mini-blog {
+  border: 0px solid black;
+  margin: 0px auto;
+  width: 1400px;
+  padding-right: 30px;
+  padding-left: 30px;
+  background-image: url(../images/paper.png);
+}
+h1 { border: 0px solid black; text-align: center; font-size: 40px; padding-top: 20px; }
+h2 { color: #990000; text-align: center; padding: 5px; }
+h3 { color: #8585AD; padding: 10px; }
+h4 { padding: 2px; }
+
+.row {
+  border: 0px solid black;
+  margin: 0px;
+  width: 500px;
+  clear: both;
+}
+
+.left-column {
+  border: 0px solid black;
+  margin: 0px;
+  padding: 5px;
+  float: left;
+  width: 100px;
+}
+.right-column {
+  border: 0px solid black;
+  margin: 0px;
+  padding: 5px;
+  width: 350px;
+  float: right;
+  padding-top: 20px;
+}
+#footer {
+  border: 0px solid red;
+  clear: both;
+  padding-bottom: 20px;
+}
+
+.content-block {
+  border: 0px solid black;
+  margin: 0px;
+  padding: 5px;
+  float: left;
+  width: 520px;
+}
+
+.post-line {
+  border: 0px solid black;
+  margin: 0px;
+  padding: 5px;
+  float: left;
+  width: 500px;
+}
+
+.post-author {
+  border: 0px solid black;
+  margin: 0px;
+  padding: 5px;
+  float: left;
+  width: 250px;
+}
+
+.post-date {
+  border: 0px solid black;
+  margin: 0px;
+  padding: 5px;
+  float: left;
+  width: 100px;
+}
+
+.post-del {
+  border: 0px solid black;
+  margin: 0px;
+  padding: 5px;
+  float: left;
+  width: 60px;
+}
+
+.post-like {
+  border: 0px solid black;
+  margin: 0px;
+  padding: 5px;
+  float: right;
+  width: 60px;
+}
+
+.post-content {
+  border: 0px solid black;
+  margin: 0px;
+  padding: 5px;
+  float: left;
+  width: 450px;
+}
+
+.user-line {
+  border: 0px solid black;
+  margin: 0px;
+  padding: 5px;
+  float: left;
+  width: 500px;
+}
+
+.user-name {
+  border: 0px solid black;
+  margin: 0px;
+  padding: 5px;
+  float: left;
+  width: 300px;
+}
+
+.user-follow {
+  border: 0px solid black;
+  margin: 0px;
+  padding: 5px;
+  float: right;
+  width: 200px;
+}
+
+.side-menu {
+  border: 1px solid black;
+  margin: 0px;
+  padding: 5px;
+  float: left;
+  width: 250px;
+}
