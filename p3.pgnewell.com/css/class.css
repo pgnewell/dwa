@@ -15,18 +15,10 @@
   padding-left: 30px;
   background-image: url(../images/paper.png);
 }
-h1 {
-  border: 0px solid black;
-  text-align: center;
-  font-size: 40px;
-  padding-top: 20px;
-}
-h2 { 
-  color: #990000; 
-}
-h3 { 
-  color: #8585AD; 
-}
+h1 { border: 0px solid black; text-align: center; font-size: 40px; padding-top: 20px; }
+h2 { color: #990000; text-align: center; padding: 5px; }
+h3 { color: #8585AD; padding: 10px; }
+h4 { padding: 2px; }
 
 .row {
   border: 0px solid black;
