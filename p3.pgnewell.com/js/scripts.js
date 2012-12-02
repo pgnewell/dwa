@@ -62,23 +62,26 @@ $(document).ready(function() { // start doc ready; do not delete this!
 		dependant = $( this ).parent().parent().attr('id');
 		$( this ).removeClass( 'class-depends-button');
 		$( this ).addClass( 'dependant' );
-		$('.class-depends-button').toggleClass( 'class-depends-button depends-on' );
-		$('.depends-on')
+		$('.class-depends-button')
 			.attr( 'value', 'Depends on' )
-			.click( function () {
-				var this_step = $( this ).parent().parent().attr('id');
-				Recipe.add_dependency( dependant, this_step );
-				$('.depends-on').addClass( 'class-depends-button' );
-				$('.depends-on').removeClass( 'depends-on' );
-				$('.class-depends-button').attr('value', 'Depends');
-				dependant = '';
-			});
+			.toggleClass( 'class-depends-button depends-on' );
 	});
 
+	// 
+	$('.depends-on').live ( 'click', function () {
+		var this_step = $( this ).parent().parent().attr('id');
+		Recipe.add_dependency( dependant, this_step );
+		$('.depends-on')
+			.attr('value', 'Depends')
+			.toggleClass( 'class-depends-button depends-on' );
+		$('.dependant').toggleClass( 'dependant class-depends-button' );
+		dependant = '';
+	});
+	
 	// execute the recipe
 	$('#execute-recipe').click ( function () {
-		$('recipe-content').addClass( 'hide' );
-		$('recipe-palette').addClass( 'hide' );
+		$('#recipe-content').addClass( 'hide' );
+		$('#recipe-palette').addClass( 'hide' );
 		$('#recipe-execution').removeClass('hide');
 	});
 

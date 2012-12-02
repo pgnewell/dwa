@@ -69,8 +69,9 @@ var Recipe = {
 	},
 	
 	// add a dependency should also att a class that makes it dependent (not really used)
-	add_dependency: function ( dependant, depended_upon ) {
-		this.steps[dependant].dependency = depended_upon;
+	add_dependency: function ( idependant, idepended_upon ) {
+		this.steps[idependant].dependency = idepended_upon;
+//		console.log ( dependant+" depends on "+depended_upon );
 	},	
 	
 	is_empty: function () { is_empty( steps ) },

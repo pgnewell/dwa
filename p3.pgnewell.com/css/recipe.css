@@ -15,20 +15,24 @@
 }
 
 #recipe-content { margin: 3px; width: 400px; float: left; 
-  background-color: #ededed; height: 600px; }
+  background-color: #ededed; height: 600px; overflow: scroll; }
 
 #recipe-content-header { height: 50px; width: 100%; background-color:	#8FBC8F; }
 
 #recipe-execution { width: 200px; float: left; }
 
+#recipe-footer { margin: 2px; }
+
 div[class*="depends-on-"] { display: none; }
 
 .recipe-step { margin: 2px; background-color: #E0E0E0; }
 
-.icon-block { border: 1px solid blue; margin: 2px; width: 160px; height: 25px; }
+.icon-block { background-color:	 #E0E0E0; margin: 2px; width: 160px; height: 29px; }
 
 .icon-block img,.recipe-step img,recipe-step textarea,.step-instructions label 
 	{ float: left; }
+
+.icon-block img { margin: 2px; }
 
 .clear { clear: both; }
 
@@ -42,21 +46,11 @@ div[class*="depends-on-"] { display: none; }
 
 .hide { display: none; }
 
-.recipe-textarea {
-  float: left;
-  height: 20px;
-  width: 30;
-}
+.recipe-textarea { float: left; height: 20px; width: 30; }
 
-#message-block {
-  height: 20px
-  width: 100%;
-}
+#message-block { height: 20px; width: 100%; }
 
-.caption {
-  float: left;
-  padding-left: 10px;
-}
+.caption { float: left; padding-left: 10px; }
 
 #execute-button { float: right; }
 
