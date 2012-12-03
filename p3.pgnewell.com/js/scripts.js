@@ -29,7 +29,7 @@ $(document).ready(function() { // start doc ready; do not delete this!
 	});
 
 	// activate the two action buttons they should turn the icons-click back on
-	$('#id-done-button').live ('click', function() {
+	$('.done-button').live ('click', function() {
 		var box = $(this).parent().parent();
 		if (box.find('textarea').val().length == 0) {
 			$('#message-block').html('Cannot add without instructions');
@@ -43,7 +43,7 @@ $(document).ready(function() { // start doc ready; do not delete this!
 	});
 
 	// cancel discards the step being entered
-	$('#id-can-button').live ('click', function() {
+	$('.can-button').live ('click', function() {
 		$(this).parent().parent().remove();
 		$('#message-block').html('');
 		$('#message-block').addClass('hide');
@@ -52,19 +52,19 @@ $(document).ready(function() { // start doc ready; do not delete this!
 	
 	// delete removes an already filled out step - I'm not giving any warning or
 	// giving any option to change your mind
-	$('.class-del-button').live ('click', function() {
+	$('.del-button').live ('click', function() {
 		var box = $(this).parent().parent();
 		Recipe.delete_step( box );		
 	});
 
 	// depends disables itself and makes all other depends buttons "depends on"
-	$('.class-depends-button').live ('click', function() {
+	$('.depends-button').live ('click', function() {
 		dependant = $( this ).parent().parent().attr('id');
-		$( this ).removeClass( 'class-depends-button');
+		$( this ).removeClass( 'depends-button');
 		$( this ).addClass( 'dependant' );
-		$('.class-depends-button')
+		$('.depends-button')
 			.attr( 'value', 'Depends on' )
-			.toggleClass( 'class-depends-button depends-on' );
+			.toggleClass( 'depends-button depends-on' );
 	});
 
 	// 
@@ -73,8 +73,8 @@ $(document).ready(function() { // start doc ready; do not delete this!
 		Recipe.add_dependency( dependant, this_step );
 		$('.depends-on')
 			.attr('value', 'Depends')
-			.toggleClass( 'class-depends-button depends-on' );
-		$('.dependant').toggleClass( 'dependant class-depends-button' );
+			.toggleClass( 'depends-button depends-on' );
+		$('.dependant').toggleClass( 'dependant depends-button' );
 		dependant = '';
 	});
 	
