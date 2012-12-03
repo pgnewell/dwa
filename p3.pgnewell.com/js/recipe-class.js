@@ -8,9 +8,8 @@ function is_empty(obj) {
    		}
    	}
  	return true;
-}
+};
 
-var done_button = $('#exec-done-button').html();
 
 var Recipe = {
 
@@ -36,8 +35,10 @@ var Recipe = {
 		box.find('label').text('');
 		box.find('textarea').attr('disabled','disabled'	);
 		var exec_box = box.clone();
-		exec_box.attr('id','exec-'+box.id);
+		exec_box.attr('id','exec-'+step_id);
+		var done_button = $('#exec-done-button').html();
 		exec_box.find('.step-actions').html(done_button);
+		exec_box.find('textarea').val(instructions);
 		$('#recipe-execution').append( exec_box );
 
 		this_step.type= step_type;

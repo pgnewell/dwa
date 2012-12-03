@@ -4,7 +4,8 @@
 		<title>DWA Project 3</title>
 		<link rel="stylesheet" href="./css/class.css" type="text/css">
 		<link rel="stylesheet" href="./css/recipe.css" type="text/css">
-	    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
+	    <link rel="stylesheet" 
+	    	href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
     	<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
     	<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
  		<script type="text/javascript" src="./js/recipe-class.js"></script>
@@ -17,20 +18,22 @@
 	<h2>DWA Project 3</h2>
 	<h3>
 		<p>
-	To build a recipe click on the icon on the left to create a space to fill in
-	instructions on the right. A text box will appear which can be completed with the 
-	instructions for that step. When complete click done and the step will be saved and
-	the next can be entered in the same way. You can cancel any step that you are in the
-	process of filling in or delete it after it is saved. When done click "Execute" and 
-	a window will appear of the steps to be done and you can click on each as it is 
-	completed. 
+		To build a recipe click on the icon on the left to create a space to fill in
+		instructions on the right. A text box will appear which can be completed with the 
+		instructions for that step. When complete, click done and the step will be saved 
+		and the next can be entered in the same way. You can cancel any step that you are 
+		in the process of filling in or delete it after it is saved. 
 		</p> <br/>
-		<p>To create a dependency click on the step that is dependent on another step
-	and the other steps' depends buttons should become "depends on". Click the one that 
-	the step depends on and the buttons should revert. This actually doesn't work 
-	properly because an additional signal is sent causing one of the steps to 
-	turn again<br/><br/>
-		</p>
+		<p>Create a dependency for a step that needs another to be done before it can be
+		started. Click on the step that is dependent on another step and the other steps' 
+		depends buttons should become "depends on". Click the one that the step depends 
+		on and the buttons should revert. This actually doesn't work properly because an 
+		additional signal is sent causing one of the steps to turn again
+		</p><br/>
+		<p>
+		When done click "Execute" and a window will appear of the steps to be done and you 
+		can click on each as it is completed. 
+		</p><br/><br/>
 	</h3>
 
 <!-- 
@@ -49,18 +52,8 @@
 		<div id="recipe-palette">
 			<h4>Step types</h4>
 			<div class="icon-block icon-click">
-				<img src="./images/stir.jpg" alt="stir" title="stir"/>
-				<div class='caption'>stir</div><div class="clear"></div>
-				<div class='step-instructions hide'>
-					<br><label>enter instructions here</label>
-					<textarea class="recipe-textarea" onfocus="this.value='';">
-					</textarea><br>
-				</div>
-				<div class='step-actions hide'></div>
-			</div>
-			<div class="icon-block icon-click">
-				<img src="./images/mipl.jpg" alt="mis-en-place" title="mis-en-place"/>
-				<div class='caption'>mis-en-place</div><div class="clear"></div>
+				<img src="./images/mipl.jpg" alt="ingredients" title="Ingredients"/>
+				<div class='caption'>Ingredients</div>
 				<div class='step-instructions hide'>
 					<br><label>enter ingredient list here</label>
 					<textarea class="recipe-textarea" onfocus="this.value='';">
@@ -69,8 +62,8 @@
 				<div class='step-actions hide'></div>
 			</div>
 			<div class="icon-block icon-click">
-				<img src="./images/fold.jpg" alt="fold" title="fold"/>
-				<div class='caption'>fold</div><div class="clear"></div>
+				<img src="./images/stir.jpg" alt="stir" title="Stir"/>
+				<div class='caption'>stir</div>
 				<div class='step-instructions hide'>
 					<br><label>enter instructions here</label>
 					<textarea class="recipe-textarea" onfocus="this.value='';">
@@ -79,8 +72,8 @@
 				<div class='step-actions hide'></div>
 			</div>
 			<div class="icon-block icon-click">
-				<img src="./images/bake.jpg" alt="bake" title="bake"/>
-				<div class='caption'>bake</div><div class="clear"></div>
+				<img src="./images/fold.jpg" alt="fold" title="Fold"/>
+				<div class='caption'>fold</div>
 				<div class='step-instructions hide'>
 					<br><label>enter instructions here</label>
 					<textarea class="recipe-textarea" onfocus="this.value='';">
@@ -89,8 +82,8 @@
 				<div class='step-actions hide'></div>
 			</div>
 			<div class="icon-block icon-click">
-				<img src="./images/roll.jpg" alt="roll" title="roll"/>
-				<div class='caption'>roll</div><div class="clear"></div>
+				<img src="./images/bake.jpg" alt="bake" title="Bake"/>
+				<div class='caption'>bake</div>
 				<div class='step-instructions hide'>
 					<br><label>enter instructions here</label>
 					<textarea class="recipe-textarea" onfocus="this.value='';">
@@ -99,8 +92,18 @@
 				<div class='step-actions hide'></div>
 			</div>
 			<div class="icon-block icon-click">
-				<img src="./images/chop.jpg" alt="chop" title="chop"/>
-				<div class='caption'>chop</div><div class="clear"></div>
+				<img src="./images/roll.jpg" alt="roll" title="Roll"/>
+				<div class='caption'>roll</div>
+				<div class='step-instructions hide'>
+					<br><label>enter instructions here</label>
+					<textarea class="recipe-textarea" onfocus="this.value='';">
+					</textarea><br>
+				</div>
+				<div class='step-actions hide'></div>
+			</div>
+			<div class="icon-block icon-click">
+				<img src="./images/chop.jpg" alt="chop" title="Chop"/>
+				<div class='caption'>chop</div>
 				<div class='step-instructions hide'>
 					<br><label>enter instructions here</label>
 					<textarea class="recipe-textarea" onfocus="this.value='';">
@@ -110,7 +113,7 @@
 			</div>
 			<div class="icon-block icon-click">
 				<img src="./images/chill.png" alt="chill" title="chill"/>
-				<div class='caption'>chill</div><div class="clear"></div>
+				<div class='caption'>chill</div>
 				<div class='step-instructions hide'>
 					<br><label>enter instructions here</label>
 					<textarea class="recipe-textarea" onfocus="this.value='';">
@@ -158,10 +161,16 @@
 	on should appear. Ideally this would be in some order but that was not done
   -->
 		<div id='recipe-execution' class='hide'>
-			<div id='sample-execute-block' class='hide'>
-				<div class='execute-instruction'>instructions go here</div>
-				<div class='execute-done'>
-					<input type='button' class='execute-done-button' value='Complete'>
+			<div id="execute-header">
+				<input type='button' class='exec-clear' value='Clear' onClick='window.location.reload()'>
+			</div>
+			<div id='recipe-execution-list' class='hide'>
+	
+				<div id='sample-execute-block' class='hide'>
+					<div class='execute-instruction'>instructions go here</div>
+					<div class='execute-done'>
+						<input type='button' class='execute-done-button' value='Complete'>
+					</div>
 				</div>
 			</div>
 		</div>

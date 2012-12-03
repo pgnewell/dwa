@@ -19,13 +19,17 @@
 
 #recipe-content-header { height: 50px; width: 100%; background-color:	#8FBC8F; }
 
-#recipe-execution { width: 200px; float: left; }
+#recipe-execution-list { overflow: scroll; }
 
 #recipe-footer { margin: 2px; }
 
 div[class*="depends-on-"] { display: none; }
 
 .recipe-step { margin: 2px; background-color: #E0E0E0; }
+
+.recipe-step textarea { height: 40px; }
+
+#recipe-execution div.recipe-step { height: 125px; width 150px; float: left; }
 
 .icon-block { background-color:	 #E0E0E0; margin: 2px; width: 160px; height: 29px; }
 
@@ -53,5 +57,7 @@ div[class*="depends-on-"] { display: none; }
 .caption { float: left; padding-left: 10px; }
 
 #execute-button { float: right; }
+
+
 
 

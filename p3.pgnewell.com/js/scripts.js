@@ -85,6 +85,21 @@ $(document).ready(function() { // start doc ready; do not delete this!
 		$('#recipe-execution').removeClass('hide');
 	});
 
+	// This should do more than this but I have to figure out object references in
+	// Javascript before I can make it dependencies work.
+	$('.exec-done-button').live ('click', function() {
+		$( this ).parent().parent().remove();
+		if ($('.exec-done-button').length == 1) {
+			window.location.reload();
+		}
+	});
+	
+	// provide a way back even if it is real cheap
+	$('#exec-clear').click( function () {
+		alert('recipe is done. Page will reload');
+		$(document).reload();
+	});
+	
 //	$(".icon-block").draggable({ containment: "#recipe-block" });
 //   	$( ".draggable" ).draggable({ revert: "invalid" });
 //     $( ".droppable" ).droppable({
