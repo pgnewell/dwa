@@ -1,0 +1,8 @@
+The original proposal was to have a set of icons that could be dragged and dropped in to a canvas to build a recipe by filling in instructions on each resulting step. A dependency would be created for a step that needed to follow another step. 
+
+The user would then be able to execute the recipe. That is they could display the steps that had no dependencies and proceed to click on them as they were complete. They could then know what needed to be completed what was ready to be done. I was somewhat vague on what an ingredient was to be and since adding a list of ingredients could be quite difficult and beyond the scope of a strictly javascript tool I simply left an empty block to fill in ingredients as with the others, which have only a block for intstructions. A better tool would have more variety in its steps, such as a temperature and time for baking, perhaps various methods for cooling, but I would not have been able to do that to my satisfaction.
+
+The dependencies are also not correctly implemented. 
+
+First I wanted to simply do this using drag and drop. This seemed to be an easy thing but for some reason I attempted to implement it using .live. This was probably not necessary but in any case I think I created a satisfactory solution, at least visually, by simply adding clicks. When you click on "depends", you can then click on "depends on" in some other step, which will invoke the dependency logic. The logic in the report class which does this got a bit confused and the for loop which searches for dependencies did not seem to be performing correctly on a list of object members. I need to review how objects work because they do not comply with my expectations. I will attempt to get this right on the next project.
+
