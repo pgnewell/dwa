@@ -90,13 +90,13 @@ $(document).ready(function() { // start doc ready; do not delete this!
 	$('.exec-done-button').live ('click', function() {
 		$( this ).parent().parent().remove();
 		if ($('.exec-done-button').length == 1) {
+			alert('recipe is done. Page will reload');
 			window.location.reload();
 		}
 	});
 	
 	// provide a way back even if it is real cheap
 	$('#exec-clear').click( function () {
-		alert('recipe is done. Page will reload');
 		$(document).reload();
 	});
 	
