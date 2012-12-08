@@ -7,18 +7,20 @@
 	    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
     	<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
     	<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
- 		<script type="text/javascript" src="./js/scripts.js"></script>
 		<meta name="description" content="Paul Newell's fourth project proposal">
+		<style>
+			.left-sidebar p, .right-sidebar p, .main-display p { padding: 3px; }
+		</style>
 	</head>
 	<body>
 <h1>DWA Project 4 Proposal</h1>
 <h2>A Recipe builder</h2>
 <h3>by Paul Newell</h3>
 <p>
-This site would allow a user to view a set of stored recipes and “execute” them by
+This site would allow a user to view a set of stored recipes and &quot;execute&quot; them by
 pressing a button. Here execution means displaying a list of steps and allowing the user
 to click them done as a recipe is being completed so that they can see what is left (see
-http://p3_done.pgnewell.com). The home page would have a list of recipes made public by
+http://p3.pgnewell.com). The home page would have a list of recipes made public by
 their builders ranked by some formula using most liked, recent and least viewed and the
 ability to log in or sign up. Logging in would lead the user to the ability to view or
 build and save recipes. The user should also be able to affix photographs to the recipes.
@@ -28,6 +30,25 @@ The main page would be a divided into 3 sections with a header a sidebar and a d
 The header would be mostly decorative. The sidebar would have sign in/up and perhaps
 something else. The display would have a set of recent entries.
 </p>
+<div class='main'>
+	<div class='main-header'>
+		<h1>Recipe maintenance</h1>
+		<h2>DWA Project 4</h2>
+
+	</div>
+	<div class='main-body'>
+		<div class='left-sidebar'>
+			<p>Here a sign-in dialogue, as well as a sign-up link possibly accordianed</p>
+		</div>
+		<div class='right-sidebar'>
+			<p>Here some information/ instructions</p>
+		</div>
+		<div class='main-display'>
+			<p>Here a list of recent/ popular recipes</p>
+		</div>
+	</div>
+</div>
+<br/>
 <p>
 Sign in would lead to a new page with the sidebar now having options for adding or editing
 entries (recipes) or the users profile. The display would have the users recent entries or
@@ -35,6 +56,56 @@ some other display as requested by the user (depending on how much time I have t
 fancy). The user would be able to save and retrieve recipes to add, modify or delete
 them.
 </p>
+
+<div class='main'>
+	<div class='main-header'>
+		<h1>Recipe maintenance</h1>
+		<h2>DWA Project 4</h2>
+
+	</div>
+	<div class='main-body'>
+		<div class='left-sidebar'>
+			<ul >
+				<li>Create a new recipe</li>
+				<li>Search for a recipe</li>
+				<li>More stuff<li>
+			</ul>
+		</div>
+		<div class='right-sidebar'>
+			<p>information/ instructions</p>
+		</div>
+		<div class='main-display'>
+			<p>Here a list of users recipes (user can edit them with a button).</p>
+		</div>
+	</div>
+</div>
+<br/>
+<p>
+"Create a new recipe" would lead to a screen like this:
+</p>
+<div class='main'>
+	<div class='main-header'>
+		<h1>Recipe maintenance</h1>
+		<h2>DWA Project 4</h2>
+
+	</div>
+	<div class='main-body'>
+		<div class='left-sidebar'>
+			<p>Menu is disabled</p>
+			<ul display="none">
+			<li>Create a new recipe</li>
+			<li>Search for a recipe</li>
+			<li>More stuff?<li>
+			</ul>
+		</div>
+		<div class='right-sidebar'>
+			<p>still information/ instructions</p>
+		</div>
+		<div class='main-display'>
+			<p>here the tool from <a href="p3.pgnewell.com">p3</a>	enhanced to work</p>
+		</div>
+	</div>
+</div>
 <div>
 Related sites (as for project 3):
 <a href='http://www.cookingforengineers.com/'>Cooking for
