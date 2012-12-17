@@ -14,40 +14,50 @@ function is_empty(obj) {
 }
 
 var done_button = $('#exec-done-button').html();
-var RecipeStep = {
-	id: '',
-	instructions: {}
+function RecipeStep () {
+	this.id = '';
+	this.instructions = {};
+	this.save = function (html) {
+		ajax_call = "/recipe_step/save/" + html;
+	};
+	this.html = function (data) {
+		html = '<div class="icon-block icon-click">' +
+		  data.html + '</div>';
+		return html;
+		
+	};
 };
 
-var Recipe = {
+function Recipe () {
 
-	name: '',
-	description: '',
-	type: '',
-	steps: {},
-	last_id: 0,
+	this.name = '';
+	this.description = '';
+	this.type = '';
+	this.steps = {};
+	this.last_id = 0;
+	this.dependencies = {};
 
-	next_id: function () { return 'recipe-step-' + this.last_id++; },
+	this.next_id = function () { return 'recipe-step-' + this.last_id++; },
 	
-	add_step: function(step) {
+	this.add_step = function(step) {
 		steps[next_id] = step; 	 
-	},	
+	};
 
 	// this should remove a step from the list and then show any dependent object that
 	// now has no dependencies
-	delete_step: function (box) {
+	this.delete_step = function (box) {
 					
-	},
+	};
 	
 	// add a dependency should also att a class that makes it dependent (not really used)
-	add_dependency: function ( dependant, depended_upon ) {
+	this.add_dependency = function ( dependant, depended_upon ) {
 
-	},	
+	};
 	
-	is_empty: function () { is_empty( steps ) },
+	this.is_empty = function () { is_empty( steps ) };
 
-	list_step: function() {	
+	this.list_step = function() {	
 
-	},
+	};
 	
 }; // eoc

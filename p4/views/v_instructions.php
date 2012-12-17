@@ -1,0 +1,4 @@
+<input id='save-step' type='button' value='Save step'/>
+To build a recipe click on the icon on the left to create a space to fill in instructions on the right. A text box will appear which can be completed with the instructions for that step. When complete, click done and the step will be saved and the next can be entered in the same way. You can cancel any step that you are in the process of filling in or delete it after it is saved.
+
+Create a dependency for a step that needs another to be done before it can be started. Click on the step that is dependent on another step and the other steps' depends buttons should become "depends on". Click the one that the step depends on and the buttons should revert. 

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>controllers/c_base.php</string>
+	<string>js/scripts.js</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -18,45 +18,31 @@
 		</dict>
 	</array>
 	<key>fileHierarchyDrawerWidth</key>
-	<integer>200</integer>
+	<integer>300</integer>
 	<key>metaData</key>
 	<dict>
-		<key>config/config.php</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>12</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>controllers/c_base.php</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>30</integer>
-				<key>line</key>
-				<integer>39</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
 		<key>controllers/c_index.php</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>7</integer>
-				<key>line</key>
 				<integer>25</integer>
+				<key>line</key>
+				<integer>38</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>6</integer>
+		</dict>
+		<key>controllers/c_step.php</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>1</integer>
+				<key>line</key>
+				<integer>10</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -70,79 +56,77 @@
 				<key>column</key>
 				<integer>0</integer>
 				<key>line</key>
-				<integer>0</integer>
+				<integer>6</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>css/class.css</key>
+		<key>css/recipe-builder.css</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>2</integer>
+				<integer>56</integer>
 				<key>line</key>
-				<integer>0</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>css/recipe.css</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
 				<integer>20</integer>
-				<key>line</key>
-				<integer>10</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>index.html.save</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>7</integer>
-				<key>line</key>
-				<integer>34</integer>
-			</dict>
-			<key>columnSelection</key>
-			<false/>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-			<key>selectFrom</key>
-			<dict>
-				<key>column</key>
-				<integer>0</integer>
-				<key>line</key>
-				<integer>15</integer>
-			</dict>
-			<key>selectTo</key>
-			<dict>
-				<key>column</key>
-				<integer>7</integer>
-				<key>line</key>
-				<integer>34</integer>
-			</dict>
+			<integer>2</integer>
 		</dict>
 		<key>index.php</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>2</integer>
+				<integer>12</integer>
 				<key>line</key>
+				<integer>16</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>js/recipe-class.js</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
 				<integer>6</integer>
+				<key>line</key>
+				<integer>17</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>5</integer>
+		</dict>
+		<key>js/scripts.js</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>12</integer>
+			</dict>
+			<key>firstVisibleColumn</key>
+			<integer>0</integer>
+			<key>firstVisibleLine</key>
+			<integer>0</integer>
+		</dict>
+		<key>phpinfo.php</key>
+		<dict>
+			<key>caret</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -163,21 +147,7 @@
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
 		</dict>
-		<key>views/_v_template.php</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>1</integer>
-				<key>line</key>
-				<integer>14</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>views/v_index_guest.php</key>
+		<key>views/_v_email.php</key>
 		<dict>
 			<key>caret</key>
 			<dict>
@@ -186,19 +156,35 @@
 				<key>line</key>
 				<integer>0</integer>
 			</dict>
+			<key>columnSelection</key>
+			<false/>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
 			<integer>0</integer>
+			<key>selectFrom</key>
+			<dict>
+				<key>column</key>
+				<integer>10</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
+			<key>selectTo</key>
+			<dict>
+				<key>column</key>
+				<integer>0</integer>
+				<key>line</key>
+				<integer>0</integer>
+			</dict>
 		</dict>
 		<key>views/v_index_index.php</key>
 		<dict>
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>6</integer>
+				<integer>24</integer>
 				<key>line</key>
-				<integer>19</integer>
+				<integer>3</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -210,23 +196,9 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>5</integer>
 				<key>line</key>
-				<integer>0</integer>
-			</dict>
-			<key>firstVisibleColumn</key>
-			<integer>0</integer>
-			<key>firstVisibleLine</key>
-			<integer>0</integer>
-		</dict>
-		<key>views/v_users_login.php</key>
-		<dict>
-			<key>caret</key>
-			<dict>
-				<key>column</key>
-				<integer>22</integer>
-				<key>line</key>
-				<integer>4</integer>
+				<integer>21</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
@@ -236,24 +208,17 @@
 	</dict>
 	<key>openDocuments</key>
 	<array>
-		<string>css/class.css</string>
-		<string>css/recipe.css</string>
-		<string>views/_v_template.php</string>
-		<string>proposal.html</string>
-		<string>index.html.save</string>
+		<string>js/recipe-class.js</string>
+		<string>js/scripts.js</string>
+		<string>controllers/c_users.php</string>
+		<string>controllers/c_step.php</string>
+		<string>controllers/c_index.php</string>
 		<string>index.php</string>
 		<string>views/v_index_index.php</string>
-		<string>views/v_index_user.php</string>
-		<string>views/v_users_login.php</string>
-		<string>config/config.php</string>
-		<string>controllers/c_base.php</string>
-		<string>views/v_index_guest.php</string>
-		<string>controllers/c_index.php</string>
-		<string>controllers/c_users.php</string>
 	</array>
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{276, 229}, {867, 773}}</string>
+	<string>{{153, 250}, {906, 742}}</string>
 </dict>
 </plist>

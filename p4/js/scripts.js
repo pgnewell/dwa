@@ -6,6 +6,33 @@ $(document).ready(function() { // start doc ready; do not delete this!
 	var new_edit_buttons = edit_buttons.replace( /class=\"class/g, 'id="id' );
 	var after_buttons = $('#after-buttons').html();
 	var dependant = '';
+	var subview_options = { 
+		type: 'POST',
+		url: '/step_type/retrieve/',
+		beforeSubmit: function() {
+			$('#results').html("Working...");
+		},
+		success: function(response) {
+			step_types = jQuery.parseJSON( response );
+			
+			for( i=0; i< step_types.length; i++ )
+				var ht = step_types[i].html; 
+			$('#main-subview').html(response);
+		} 
+	};
+	$('#user-signup').click( function () {
+		$.ajax(subview_options);
+	});
+
+	$('#save-step').click( function () {
+		var steps = $("#recipe-palette .icon-block").find('form');
+		for (var i=0; i<steps.length; i++ ) {
+			var step = steps[i];
+			var thisForm = step.find('form');
+			var recipeStep = new RecipeStep();
+			recipeStep.save(json);
+		}
+	});
 	
 	// When the user clicks on a step icon it should create a dialog in the recipe 
 	// with the form included. Then turn off all the icon clickables

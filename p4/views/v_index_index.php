@@ -7,14 +7,16 @@
 
 			</p>
 		</h3>
-
 	</div>
 	<div id='main-body'>
-		<div id='right-sidebar'>
+		<div id='left-sidebar' class='main-subview'>
+			<?=$lsb?>
 		</div>
-		<div id='main-display'>
+		<div id='main-display' class='main-subview'>
+			<?=$main_display?>
 		</div>
-		<div id='left-sidebar'>
+		<div id='right-sidebar' class='main-subview'>
+			<?=$rsb?>
 		</div>
 	</div>
 </div>
