@@ -10,10 +10,15 @@ class recipe_controller extends base_controller {
 	}
 
 	public static function format_recipe( $sql ) {
+		$response = '';
 		$rows = DB::instance(DB_NAME)->select_rows( $sql );
 		foreach ($rows as $row) {
-			print_r($row);
+			$view = View::instance( 'v_recipe_display' );
+			$view->name = $row['name'];
+			$view->description = $row['description'];
+			$response .= $view;
 		}
+		echo $response;
 	}
 	
 	public function retrieve_all() {

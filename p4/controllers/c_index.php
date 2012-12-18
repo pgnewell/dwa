@@ -14,7 +14,12 @@ class index_controller extends base_controller {
 		# Set up main window and initial displays for each part
 		$this->template->content = View::instance('v_index_index');
 		$this->template->content->lsb = View::instance('v_index_user');
-		$this->template->content->main_display = View::instance('v_build_recipe');
+
+		//$this->template->content->main_display = View::instance('v_build_recipe');
+		$this->template->content->main_display = View::instance('v_index_loadform');
+		$this->template->content->main_display->url = '/recipe/retrieve_all';
+		$this->template->content->main_display->element = '#main-display';
+
 		$this->template->content->rsb = View::instance('v_instructions');
 		
 		# set the <title> tag
@@ -27,8 +32,9 @@ class index_controller extends base_controller {
 				"./css/recipe.css",
 				"./css/recipe-builder.css",
 				"./js/recipe-class.js",
-				"./js/scripts.js",
-				"./js/jquery.form.js"
+				"./js/jquery.form.js",
+				"./js/loadform.js",
+				"./js/scripts.js"
 		);
 
 	  $this->template->client_files = Utils::load_client_files($client_files);   

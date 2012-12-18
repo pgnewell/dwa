@@ -6,38 +6,29 @@ $(document).ready(function() { // start doc ready; do not delete this!
 	var new_edit_buttons = edit_buttons.replace( /class=\"class/g, 'id="id' );
 	var after_buttons = $('#after-buttons').html();
 	var dependant = '';
-	var subview_options = { 
-		type: 'POST',
-		url: '/step_type/retrieve/',
-		beforeSubmit: function() {
-			$('#results').html("Working...");
-		},
-		success: function(response) {
-			step_types = jQuery.parseJSON( response );
-			
-			for( i=0; i< step_types.length; i++ ){
-				var step = new RecipeStep (step_types[i]);
-				html = step.html();
-				$('#step-type-list').append(html);
-			}
-		} 
-	};
-	function loadform ( form, windowdiv ) {
-		var loadform_options = { 
-			type: 'POST',
-			url: '/index/loadform/' + form,
-			beforeSubmit: function() {
-				$('#results').html("Working...");
-			},
-			success: function(response) {
-				$(windowdiv).html(response);
-			}
-		};
-		$.ajax( loadform_options );
-	};
+	//var subview_options = { 
+	//	type: 'POST',
+	//	url: '/step_type/retrieve/',
+	//	beforeSubmit: function() {
+	//		$('#results').html("Working...");
+	//	},
+	//	success: function(response) {
+	//		step_types = jQuery.parseJSON( response );
+	//		
+	//		for( i=0; i< step_types.length; i++ ){
+	//			var step = new RecipeStep (step_types[i]);
+	//			html = step.html();
+	//			$('#step-type-list').append(html);
+	//		}
+	//	} 
+	//};
+
+	$('#recipe-build').click( function () {
+		loadform( '/step_type/retrieve', '#step-type-list' );
+	});
 
 	$('#user-signup').click( function () {
-		loadform( 'users_signup', '#main-display');
+		loadform( '/index/loadform/users_signup', '#main-display');
 	});
 
 	$('#save-step').click( function () {

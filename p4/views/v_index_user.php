@@ -25,13 +25,7 @@
       <a href='/users/profile'>See profile</a>
     </li>
     <li>
-      <a href='/recipes/enter'>Enter Posts</a>
-    </li>
-    <li>
-      <a href='/recipes/search'>Search</a>
-    </li>
-    <li>
-      <a href='/users/select_follow'>Follow Users</a>
+      <a href='#' id='recipe-build'>Enter Recipes</a>
     </li>
     <li>
       <a href='/users/logout'>Logout</a>

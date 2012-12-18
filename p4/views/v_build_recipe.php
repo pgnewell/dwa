@@ -24,6 +24,13 @@
 	<div id="recipe-content">
 		<div id="recipe-header">
 			<h4>Recipe</h4>
+			<form method='POST'>
+			  Name<br>
+			  <input type='text' name='Recipe name'><br>
+				Description<br>
+			  <textarea name='description'></textarea><br>
+			  <input type='submit' value='Save'>
+			</form>
 		</div>
 		<div id="recipe-step-list">
 			<div id='recipe-footer' class="recipe-step droppable">
@@ -34,18 +41,7 @@
 			</div>
 		</div>
 		<div id="message-block" class="hide"></div>
-		<div id="icon-buttons" class="hide">
-			<input type='button' class='done-button' value='Done'>
-			<input type='button' class='can-button' value='Cancel'>
-		<div id="after-buttons" class="hide">
-			<input type='button' class='del-button' value='Delete'>
-			<input type='button' class='depends-button' value='Depends'>
-		</div>
-		<div id="exec-done-button" class="hide">
-			<input type='button' class='exec-done-button' value='Done'>
-		</div>
 
-		</div>
 		<p class='clear'></p>
 	</div>
 <!--
