@@ -14,15 +14,16 @@ function is_empty(obj) {
 }
 
 var done_button = $('#exec-done-button').html();
-function RecipeStep () {
+function RecipeStep (data) {
+	this.data = data;
 	this.id = '';
 	this.instructions = {};
 	this.save = function (html) {
 		ajax_call = "/recipe_step/save/" + html;
 	};
-	this.html = function (data) {
+	this.html = function () {
 		html = '<div class="icon-block icon-click">' +
-		  data.html + '</div>';
+		  this.data.html + '</div>';
 		return html;
 		
 	};

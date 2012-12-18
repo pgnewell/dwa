@@ -15,13 +15,29 @@ $(document).ready(function() { // start doc ready; do not delete this!
 		success: function(response) {
 			step_types = jQuery.parseJSON( response );
 			
-			for( i=0; i< step_types.length; i++ )
-				var ht = step_types[i].html; 
-			$('#main-subview').html(response);
+			for( i=0; i< step_types.length; i++ ){
+				var step = new RecipeStep (step_types[i]);
+				html = step.html();
+				$('#step-type-list').append(html);
+			}
 		} 
 	};
+	function loadform ( form, windowdiv ) {
+		var loadform_options = { 
+			type: 'POST',
+			url: '/index/loadform/' + form,
+			beforeSubmit: function() {
+				$('#results').html("Working...");
+			},
+			success: function(response) {
+				$(windowdiv).html(response);
+			}
+		};
+		$.ajax( loadform_options );
+	};
+
 	$('#user-signup').click( function () {
-		$.ajax(subview_options);
+		loadform( 'users_signup', '#main-display');
 	});
 
 	$('#save-step').click( function () {
