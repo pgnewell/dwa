@@ -24,6 +24,7 @@ $(document).ready(function() { // start doc ready; do not delete this!
 	//};
 
 	$('#recipe-build').click( function () {
+		loadform( '/recipe/load_builder', '#main-display');
 		loadform( '/step_type/retrieve', '#step-type-list' );
 	});
 

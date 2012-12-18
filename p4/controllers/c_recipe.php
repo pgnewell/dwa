@@ -3,7 +3,12 @@ class recipe_controller extends base_controller {
 
   public function __construct() {
     parent::__construct();
-  } 
+  }
+
+	public function load_builder () {
+		$view = View::instance( 'v_build_recipe' );
+		echo $view;
+	}
 
 	public function save_step( $html ) {
 		
