@@ -19,8 +19,8 @@ class step_type_controller extends base_controller {
     $steps = DB::instance(DB_NAME)->select_rows("SELECT * FROM step_types");
 		foreach ($steps as $step) {
 			$view->name = $step['name'];
-			$view->icon_url = $step['icon_url'];
-			$view->description = $step['description'];
+			$view->icon = $step['icon_url'];
+			$view->html = $step['description'];
 			$response .= $view;
 		//	"<div class='icon-block icon-click'><img src='../images/" . $step['icon_url'] . "' alt='" . $step['name'] . 
 		//	"' title='" . $step['name'] . "'/>" . 

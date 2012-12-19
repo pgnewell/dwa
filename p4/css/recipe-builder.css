@@ -18,12 +18,13 @@ div[class*="depends-on-"] { display: none; }
 
 #recipe-execution div.recipe-step { height: 125px; width 150px; float: left; }
 
-.icon-block { background-color:	 #E0E0E0; margin: 2px; width: 160px; height: 29px; }
+#recipe-palette .recipe-step { background-color:	 #E0E0E0; margin: 2px; width: 160px; height: 29px; }
 
-.icon-block img,.recipe-step img,.recipe-step textarea,.step-instructions label 
+#recipe-palette .recipe-step img,#recipe-content .recipe-step img,#recipe-content .recipe-step textarea,
+.step-instructions label 
   { float: left; }
 
-.icon-block img { margin: 2px; }
+#recipe-palette .recipe-step img { margin: 2px; }
 
 .step-icon { cursor:pointer; margin: 2px; }
 
@@ -40,3 +41,7 @@ div[class*="depends-on-"] { display: none; }
 .caption { float: left; padding-left: 10px; }
 
 #execute-button { float: right; }
+
+#recipe-palette .build-buttons,#recipe-palette .exec-buttons,
+#recipe-execution .build-buttons, #recipe-content .exec-buttons
+ { display: none }

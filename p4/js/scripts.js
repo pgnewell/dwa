@@ -1,10 +1,5 @@
 $(document).ready(function() { // start doc ready; do not delete this!
 
-	// first extract some static information from hidden divs 
-	var edit_buttons = $('#icon-buttons').html();
-	// only one of these buttons should be active at a time so it can have an id
-	var new_edit_buttons = edit_buttons.replace( /class=\"class/g, 'id="id' );
-	var after_buttons = $('#after-buttons').html();
 	var dependant = '';
 	//var subview_options = { 
 	//	type: 'POST',
