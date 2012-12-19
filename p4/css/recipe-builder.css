@@ -1,30 +1,23 @@
-#recipe-palette { margin: 3px; width: 166px; float: left; 
-  height: 600px; background-color: #ededed; }
-
-#recipe-content { margin: 3px; width: 400px; float: left; 
-  background-color: #ededed; height: 600px; overflow: scroll; }
-
-#recipe-content-header { height: 50px; width: 100%; background-color:	#8FBC8F; }
-
-#recipe-execution-list { overflow: scroll; }
 
 #recipe-footer { margin: 2px; }
 
 div[class*="depends-on-"] { display: none; }
 
-.recipe-step { margin: 2px; background-color: #E0E0E0; }
+/*.recipe-step { margin: 2px; background-color: #E0E0E0; }*/
 
+.recipe-step { clear: both; }
 .recipe-step textarea { height: 40px; }
+.build-buttons, execute-buttons { float: right; }
 
 #recipe-execution div.recipe-step { height: 125px; width 150px; float: left; }
 
-#recipe-palette .recipe-step { background-color:	 #E0E0E0; margin: 2px; width: 160px; height: 29px; }
+#recipe-palette .recipe-step { background-color: #E0E0E0; margin: 2px; width: 160px; height: 29px; cursor: pointer; }
 
 #recipe-palette .recipe-step img,#recipe-content .recipe-step img,#recipe-content .recipe-step textarea,
 .step-instructions label 
   { float: left; }
 
-#recipe-palette .recipe-step img { margin: 2px; }
+#recipe-palette .recipe-step img { margin: 2px; clear: both; }
 
 .step-icon { cursor:pointer; margin: 2px; }
 
@@ -42,6 +35,11 @@ div[class*="depends-on-"] { display: none; }
 
 #execute-button { float: right; }
 
-#recipe-palette .build-buttons,#recipe-palette .exec-buttons,
-#recipe-execution .build-buttons, #recipe-content .exec-buttons
+#recipe-palette .build-buttons,#recipe-palette .exec-buttons,#recipe-palette .step-instructions,
+#recipe-execution .step-instructions, #recipe-execution .build-buttons, #recipe-content .exec-buttons
  { display: none }
+
+.current-step .build-done-button { display: inline; }
+
+#recipe-block { height: 100%; }
+

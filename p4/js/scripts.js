@@ -18,6 +18,10 @@ $(document).ready(function() { // start doc ready; do not delete this!
 	//	} 
 	//};
 
+
+	// -----------------------------------------------------------------
+	// the actions related to a new recipe should be here
+	
 	$('#recipe-build').click( function () {
 		loadform( '/recipe/load_builder', '#main-display');
 		loadform( '/step_type/retrieve', '#step-type-list' );
@@ -27,6 +31,30 @@ $(document).ready(function() { // start doc ready; do not delete this!
 		loadform( '/index/loadform/users_signup', '#main-display');
 	});
 
+	var this_recipe = new Recipe();
+
+	// When the user clicks on a step icon it should create a dialog in the recipe 
+	// with the form included. visibility is determined by css
+	$("#recipe-palette .recipe-step").live ('click', function() {
+		var new_box = $(this).clone();
+		new_box.addClass('recipe-step');
+		new_box.attr('id',this_recipe.next_id());
+		new_box.addClass( 'current-step' );
+		$("#recipe-footer").before( new_box );
+		//$('.icon-block').addClass('icon-error');
+	});	
+
+	// -----------------------------------------------------------------
+
+	$('#save-recipe').live( 'click', function () {
+		var r = this_recipe;
+		steps = $('#recipe-content .recipe-step');
+		for (var idx=0; idx<steps.length; idx++) {
+			step = steps[idx];
+			console.log( idx );
+		}
+	});
+	
 	$('#save-step').click( function () {
 		var steps = $("#recipe-palette .icon-block").find('form');
 		for (var i=0; i<steps.length; i++ ) {
@@ -37,21 +65,6 @@ $(document).ready(function() { // start doc ready; do not delete this!
 		}
 	});
 	
-	// When the user clicks on a step icon it should create a dialog in the recipe 
-	// with the form included. Then turn off all the icon clickables
-	$(".icon-click").live ('click', function() {
-		var new_box = $(this).clone();
-		new_box.addClass('recipe-step');
-		new_box.removeClass('icon-block icon-click');
-		new_box.find('.step-actions').html(new_edit_buttons);
-		new_box.attr('id',Recipe.next_id());
-		$("#recipe-footer").before( new_box );
-		$('.icon-block').removeClass('icon-click');
-		$('.icon-block').addClass('icon-error');
-		new_box.find('.step-instructions').removeClass('hide');
-		new_box.find('.step-actions').removeClass('hide');
-	});	
-
 	// clicking on an icon while a step is being filled should emit an error
 	$(".icon-error").live ('click', function() {
 		$('#message-block').html('Finish this step or cancel it before adding more');
@@ -59,16 +72,18 @@ $(document).ready(function() { // start doc ready; do not delete this!
 	});
 
 	// activate the two action buttons they should turn the icons-click back on
-	$('#id-done-button').live ('click', function() {
+	$('.current-step .build-done-button').live ('click', function() {
 		var box = $(this).parent().parent();
+		var type = box.find('img').attr('alt');
+		var instruct = box.find('textarea').attr('value');
+		var step = new RecipeStep(type, instruct);
 		if (box.find('textarea').val().length == 0) {
 			$('#message-block').html('Cannot add without instructions');
 			$('#message-block').removeClass('hide');
 		} else {
 			$('#message-block').html('');
 			$('#message-block').addClass('hide');
-			Recipe.add_step( box );
-			$(this).parent().html(after_buttons);
+			this_recipe.add_step( step );
 		};
 	});
 
@@ -84,7 +99,7 @@ $(document).ready(function() { // start doc ready; do not delete this!
 	// giving any option to change your mind
 	$('.class-del-button').live ('click', function() {
 		var box = $(this).parent().parent();
-		Recipe.delete_step( box );		
+		this_recipe.delete_step( box );		
 	});
 
 	// depends disables itself and makes all other depends buttons "depends on"

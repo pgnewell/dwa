@@ -16,3 +16,12 @@
 
 #sidebar-info {}
 
+#recipe-palette { width: 166px; float: left; 
+	  margin: 3px; height: 98%; background-color: #ededed; }
+
+#recipe-content { margin: 3px; width: 400px; float: left; 
+	  background-color: #ededed; height: 98%; overflow-y: scroll; }
+
+#recipe-content-header { height: 50px; width: 100%; background-color:	#8FBC8F; }
+
+#recipe-execution-list { overflow-y: scroll; }

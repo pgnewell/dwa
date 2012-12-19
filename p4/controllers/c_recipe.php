@@ -10,7 +10,19 @@ class recipe_controller extends base_controller {
 		echo $view;
 	}
 
-	public function save_step( $html ) {
+	public function save_steps( $steps ) {
+		
+	}
+	
+	public function save() {
+		$recipe['name'] = $_POST['name'];
+		$recipe['description'] = $_POST['description'];
+		$recipe['user'] = $this->user->user_id;
+		$recipe['picture_url'] = $_POST['picture_url'];
+		$id = DB::instance(DB_NAME)->insert('recipes', $recipe);
+		$steps = $recipe->steps;
+		self::save_steps( $steps, $id );
+		
 		
 	}
 

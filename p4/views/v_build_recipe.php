@@ -29,7 +29,7 @@
 			  <input type='text' name='Recipe name'><br>
 				Description<br>
 			  <textarea name='description'></textarea><br>
-			  <input type='submit' value='Save'>
+			  <input id='save-recipe' type='button' value='Save'>
 			</form>
 		</div>
 		<div id="recipe-step-list">
