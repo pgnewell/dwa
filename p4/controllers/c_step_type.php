@@ -1,6 +1,8 @@
-<?php
+ß<?php
 class step_type_controller extends base_controller {
 
+	static $step_map = [];
+	
   public function __construct() {
     parent::__construct();
 
@@ -21,15 +23,8 @@ class step_type_controller extends base_controller {
 			$view->name = $step['name'];
 			$view->icon = $step['icon_url'];
 			$view->html = $step['html'];
+			$step_map[$step['name']] = '' . $view;
 			$response .= $view;
-		//	"<div class='icon-block icon-click'><img src='../images/" . $step['icon_url'] . "' alt='" . $step['name'] . 
-		//	"' title='" . $step['name'] . "'/>" . 
-		//		"<div class='caption'>" . $step['name'] . "</div>" . 
-		//		"<div class='step-instructions hide'>" . 
-		//		"</div>" . 
-		//		$step['html'] . 
-		//		"<div class='step-actions hide'></div>" . 
-		//	"</div>";
 		}
 
 		echo $response;

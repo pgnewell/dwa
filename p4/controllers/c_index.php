@@ -23,7 +23,7 @@ class index_controller extends base_controller {
 		$this->template->content->rsb = View::instance('v_instructions');
 		
 		# set the <title> tag
-		$this->template->title = "Active Recipe";
+		$this->template->title = "Active Cookbook";
 	
 		# If this view needs any JS or CSS files, add their paths to this 
 		# array so they will get loaded in the head

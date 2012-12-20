@@ -25,3 +25,13 @@
 #recipe-content-header { height: 50px; width: 100%; background-color:	#8FBC8F; }
 
 #recipe-execution-list { overflow-y: scroll; }
+
+.recipe-display-item { clear: both; }
+
+.recipe-item-picture { float: left; }
+
+.recipe-item-name { width: 30%; margin: 2px; float: left; }
+
+.recipe-item-desc { width: 50%; margin: 2px; float: left; }
+
+.display-buttons { float: left; }

@@ -11,9 +11,6 @@ class base_controller {
   public $content_title;
 
   # this is where the site should redirect back when it gets lost
-  public static $base = "/posts";
-
-  private $menu = "v_index_guest";
 
   /*-------------------------------------------------------------------------------------------------
 
@@ -30,14 +27,10 @@ class base_controller {
     $this->template 	  = View::instance('_v_template');
     $this->email_template = View::instance('_v_email');			
 								
-    $this->template->title = "Active Recipe";
+    $this->template->title = "Active Cookbook";
     # So we can use $user in views			
     $this->template->set_global('user', $this->user);
 
-    if ($this->user)
-      $this->menu = "v_index_user";
-    else
-      $this->menu = "v_index_guest";
 			
   }
 
