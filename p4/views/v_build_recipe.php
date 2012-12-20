@@ -26,9 +26,9 @@
 			<h4>Recipe</h4>
 			<form method='POST'>
 			  Name<br>
-			  <input type='text' name='Recipe name'><br>
+			  <input id='recipe-name' type='text' name='Recipe name'><br>
 				Description<br>
-			  <textarea name='description'></textarea><br>
+			  <textarea id='recipe-description' name='description'></textarea><br>
 			  <input id='save-recipe' type='button' value='Save'>
 			</form>
 		</div>

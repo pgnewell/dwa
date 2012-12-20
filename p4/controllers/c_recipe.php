@@ -10,21 +10,47 @@ class recipe_controller extends base_controller {
 		echo $view;
 	}
 
-	public function save_steps( $steps ) {
-		
-	}
-	
+	// save recipe and the associated steps and dependencies
 	public function save() {
-		$recipe = decode_json( $_POST['recipe'] );
-		$steps = $recipe['steps'];
-		echo $recipe['name'] . " has " . count($steps) . " steps!";
+		$recipe = json_decode( $_POST['recipe'] );
+		$dependencies = $recipe->dependencies;
+		//print_r( $recipe );
+		//echo $recipe->name . " has " . count($steps) . " steps!";
+		
+		// insert the recipe and retain the id
+		$r['name'] = $recipe->name;
+		$r['description'] = $recipe->description;
+		$r['user'] = $this->user->id;
+		//$r['picture_url'] = $_POST['picture_url'];
+		$id = DB::instance(DB_NAME)->insert('recipes', $r);
+		//echo "recipe " . $recipe->name . " now has id: " . $id;
+		//$response = '';
+		$seq_map = [];
+		$seq = 1;
 
-		//$recipe['name'] = $_POST['name'];
-		//$recipe['description'] = $_POST['description'];
-		//$recipe['user'] = $this->user->user_id;
-		//$recipe['picture_url'] = $_POST['picture_url'];
-		//$id = DB::instance(DB_NAME)->insert('recipes', $recipe);
-		//$steps = $recipe->steps;
+		// inserting the corresponding steps in the steps file
+		foreach ($recipe->steps as $step_id => $step) {
+			$t = DB::instance(DB_NAME)->sanitize( $step->type );
+			$type_id = DB::instance(DB_NAME)->select_field( 
+				"SELECT id FROM step_types WHERE name = '" . $t . "'");
+			//$response .= $step->type . " is " . $type_id . "\n";
+			$seq_map[$step_id] = $seq;
+			$s['seq'] = $seq++;
+			$s['recipe'] = $id;
+			$s['type'] = $t;
+			$s['instructions'] = $step->instructions;
+			DB::instance(DB_NAME)->insert('steps', $s);
+		}
+
+		// insert the dependencies using the map to remember what
+		// the step is called in the table
+		foreach ($recipe->dependencies as $dependant => $depended_upon) {
+			$d['recipe'] = $id;
+			$d['dependant'] = $seq_map[$dependant];
+			$d['depended_upon'] = $seq_map[$depended_upon];
+			DB::instance(DB_NAME)->insert('dependencies', $d);
+		}
+		echo $id;
 
 	}
 
@@ -57,7 +83,7 @@ class recipe_controller extends base_controller {
 		$steps = DB::instance(DB_NAME)->select_rows( $sql );
 		$recipe = $row;
 		$recipe->steps = $steps;
-		echo encode_json( $recipe );
+		echo json_encode( $recipe );
 		
 	}
 	

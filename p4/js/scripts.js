@@ -36,6 +36,8 @@ $(document).ready(function() { // start doc ready; do not delete this!
 
 	var this_recipe = new Recipe();
 
+	// -----------------------------------------------------------------
+
 	// When the user clicks on a step icon it should create a dialog in the 
 	// recipe with the form included. visibility is determined by css - turn 
 	// off step icons
@@ -67,10 +69,9 @@ $(document).ready(function() { // start doc ready; do not delete this!
 		};
 	});
 
-	// -----------------------------------------------------------------
-
 	$('#save-recipe').live( 'click', function () {
-		var r = this_recipe;
+		this_recipe.name = $('#recipe-name').val();
+		this_recipe.description = $('#recipe-description').val();
 		var options = { 
 			type: 'POST',
 			url: '/recipe/save/',
@@ -78,28 +79,13 @@ $(document).ready(function() { // start doc ready; do not delete this!
 			beforeSubmit: function() {
 				$('#message-block').html("Saving recipe...");
 			},
-			success: function(response) { 	
+			success: function(response) {
 				$('#message-block').html("Your post was added.");
 			} 
 		}; 
 		$.ajax(options);
-		//steps = $('#recipe-content .recipe-step');
-		//for (var idx=0; idx<steps.length; idx++) {
-		//	step = steps[idx];
-		//	console.log( idx );
-		//}
 	});
-	
-	$('#save-step').click( function () {
-		var steps = $("#recipe-palette .icon-block").find('form');
-		for (var i=0; i<steps.length; i++ ) {
-			var step = steps[i];
-			var thisForm = step.find('form');
-			var recipeStep = new RecipeStep();
-			recipeStep.save(json);
-		}
-	});
-	
+
 	// clicking on an icon while a step is being filled should emit an error
 	$(".icon-error").live ('click', function() {
 		$('#message-block').html('Finish this step or cancel it before adding more');
