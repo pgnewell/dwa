@@ -18,7 +18,6 @@ $(document).ready(function() { // start doc ready; do not delete this!
 	//	} 
 	//};
 
-
 	// -----------------------------------------------------------------
 	// the actions related to a new recipe should be here
 	
@@ -31,28 +30,64 @@ $(document).ready(function() { // start doc ready; do not delete this!
 		loadform( '/index/loadform/users_signup', '#main-display');
 	});
 
+	$('#users-profile').click( function () {
+		loadform( 'users/profile', '#main-display');
+	});
+
 	var this_recipe = new Recipe();
 
-	// When the user clicks on a step icon it should create a dialog in the recipe 
-	// with the form included. visibility is determined by css
+	// When the user clicks on a step icon it should create a dialog in the 
+	// recipe with the form included. visibility is determined by css - turn 
+	// off step icons
 	$("#recipe-palette .recipe-step").live ('click', function() {
 		var new_box = $(this).clone();
 		new_box.addClass('recipe-step');
 		new_box.attr('id',this_recipe.next_id());
 		new_box.addClass( 'current-step' );
 		$("#recipe-footer").before( new_box );
-		//$('.icon-block').addClass('icon-error');
+		$('#recipe-palette .recipe-step').toggleClass('icon-error recipe-step');
 	});	
+
+	// activate the two action buttons turn the icons-click back on
+	$('.current-step .build-done-button').live ('click', function() {
+		var box = $(this).parent().parent();
+		var type = box.find('img').attr('alt');
+		var instruct = box.find('textarea').attr('value');
+		var id = box.attr('id');
+		var step = new RecipeStep(type, instruct);
+		if (box.find('textarea').val().length == 0) {
+			$('#message-block').html('Cannot add without instructions');
+			$('#message-block').removeClass('hide');
+		} else {
+			$('#message-block').html('');
+			$('#message-block').addClass('hide');
+			this_recipe.add_step( id, step );
+			box.toggleClass( 'current-step completed-step' );
+			$('#recipe-palette .icon-error').toggleClass('icon-error recipe-step');
+		};
+	});
 
 	// -----------------------------------------------------------------
 
 	$('#save-recipe').live( 'click', function () {
 		var r = this_recipe;
-		steps = $('#recipe-content .recipe-step');
-		for (var idx=0; idx<steps.length; idx++) {
-			step = steps[idx];
-			console.log( idx );
-		}
+		var options = { 
+			type: 'POST',
+			url: '/recipe/save/',
+			data: { recipe: JSON.stringify(this_recipe) },
+			beforeSubmit: function() {
+				$('#message-block').html("Saving recipe...");
+			},
+			success: function(response) { 	
+				$('#message-block').html("Your post was added.");
+			} 
+		}; 
+		$.ajax(options);
+		//steps = $('#recipe-content .recipe-step');
+		//for (var idx=0; idx<steps.length; idx++) {
+		//	step = steps[idx];
+		//	console.log( idx );
+		//}
 	});
 	
 	$('#save-step').click( function () {
@@ -69,22 +104,6 @@ $(document).ready(function() { // start doc ready; do not delete this!
 	$(".icon-error").live ('click', function() {
 		$('#message-block').html('Finish this step or cancel it before adding more');
 		$('#message-block').removeClass('hide');
-	});
-
-	// activate the two action buttons they should turn the icons-click back on
-	$('.current-step .build-done-button').live ('click', function() {
-		var box = $(this).parent().parent();
-		var type = box.find('img').attr('alt');
-		var instruct = box.find('textarea').attr('value');
-		var step = new RecipeStep(type, instruct);
-		if (box.find('textarea').val().length == 0) {
-			$('#message-block').html('Cannot add without instructions');
-			$('#message-block').removeClass('hide');
-		} else {
-			$('#message-block').html('');
-			$('#message-block').addClass('hide');
-			this_recipe.add_step( step );
-		};
 	});
 
 	// cancel discards the step being entered
@@ -122,6 +141,7 @@ $(document).ready(function() { // start doc ready; do not delete this!
 
 	// execute the recipe
 	$('#execute-recipe').click ( function () {
+			$('#execute-recipe textarea').prop('disabled', true);
 		$('recipe-content').addClass( 'hide' );
 		$('recipe-palette').addClass( 'hide' );
 		$('#recipe-execution').removeClass('hide');

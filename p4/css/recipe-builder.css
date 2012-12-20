@@ -11,13 +11,15 @@ div[class*="depends-on-"] { display: none; }
 
 #recipe-execution div.recipe-step { height: 125px; width 150px; float: left; }
 
-#recipe-palette .recipe-step { background-color: #E0E0E0; margin: 2px; width: 160px; height: 29px; cursor: pointer; }
+#recipe-palette .recipe-step,#recipe-palette .icon-error
+	{ background-color: #E0E0E0; margin: 2px; width: 160px; height: 29px; cursor: pointer; }
 
-#recipe-palette .recipe-step img,#recipe-content .recipe-step img,#recipe-content .recipe-step textarea,
+#recipe-palette .recipe-step img,#recipe-palette .icon-error img,
+#recipe-content .recipe-step img,#recipe-content .recipe-step textarea,
 .step-instructions label 
   { float: left; }
 
-#recipe-palette .recipe-step img { margin: 2px; clear: both; }
+#recipe-palette .recipe-step img,#recipe-palette .icon-error img { margin: 2px; clear: both; }
 
 .step-icon { cursor:pointer; margin: 2px; }
 
@@ -36,10 +38,10 @@ div[class*="depends-on-"] { display: none; }
 #execute-button { float: right; }
 
 #recipe-palette .build-buttons,#recipe-palette .exec-buttons,#recipe-palette .step-instructions,
-#recipe-execution .step-instructions, #recipe-execution .build-buttons, #recipe-content .exec-buttons
+#recipe-execution .step-instructions, #recipe-execution .build-buttons, #recipe-content .exec-buttons,
+.completed-step .build-done-button,.current-step .depends-button
  { display: none }
 
-.current-step .build-done-button { display: inline; }
+.current-step .build-done-button,.completed-step .depends-button { display: inline; }
 
 #recipe-block { height: 100%; }
-
