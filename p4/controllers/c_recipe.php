@@ -7,6 +7,8 @@ class recipe_controller extends base_controller {
 
 	public function load_builder () {
 		$view = View::instance( 'v_build_recipe' );
+		$view->name = '';
+		$view->description = '';
 		echo $view;
 	}
 
@@ -25,19 +27,18 @@ class recipe_controller extends base_controller {
 		$id = DB::instance(DB_NAME)->insert('recipes', $r);
 		//echo "recipe " . $recipe->name . " now has id: " . $id;
 		//$response = '';
-		$seq_map = [];
+		$seq_map = array();
 		$seq = 1;
 
 		// inserting the corresponding steps in the steps file
 		foreach ($recipe->steps as $step_id => $step) {
-			$t = DB::instance(DB_NAME)->sanitize( $step->type );
 			$type_id = DB::instance(DB_NAME)->select_field( 
-				"SELECT id FROM step_types WHERE name = '" . $t . "'");
+				"SELECT id FROM step_types WHERE name = '" . $step->type . "'");
 			//$response .= $step->type . " is " . $type_id . "\n";
 			$seq_map[$step_id] = $seq;
 			$s['seq'] = $seq++;
 			$s['recipe'] = $id;
-			$s['type'] = $t;
+			$s['type'] = $type_id;
 			$s['instructions'] = $step->instructions;
 			DB::instance(DB_NAME)->insert('steps', $s);
 		}
@@ -47,8 +48,8 @@ class recipe_controller extends base_controller {
 		foreach ($recipe->dependencies as $dependant => $depended_upon) {
 			$d['recipe'] = $id;
 			$d['dependant'] = $seq_map[$dependant];
-			$d['depended_upon'] = $seq_map[$depended_upon];
-			DB::instance(DB_NAME)->insert('dependencies', $d);
+			$d['dependent'] = $seq_map[$depended_upon];
+			DB::instance(DB_NAME)->insert('dependent_steps', $d);
 		}
 		echo $id;
 
@@ -61,6 +62,7 @@ class recipe_controller extends base_controller {
 			$view = View::instance( 'v_recipe_display' );
 			$view->name = $row['name'];
 			$view->description = $row['description'];
+			$view->recipe_id = $row['id'];
 			$response .= $view;
 		}
 		echo $response;
@@ -77,33 +79,61 @@ class recipe_controller extends base_controller {
 	}
 	
 	public function retrieve_recipe( $id ) {
+
 		$sql = "SELECT * FROM recipes WHERE id = " . $id;
 		$row = DB::instance(DB_NAME)->select_row( $sql );
-		$sql = "SELECT * FROM recipe_steps WHERE recipe = " . $id;
-		$steps = DB::instance(DB_NAME)->select_rows( $sql );
 		$recipe = $row;
-		$recipe->steps = $steps;
+
+		// get related steps
+		$sql = "SELECT s.*,t.name AS type_name FROM steps s JOIN step_types t ON s.type = t.id WHERE recipe = " . $id;
+		$steps = DB::instance(DB_NAME)->select_rows( $sql );
+		$recipe['steps'] = $steps;
+
+		// get dependencies
+		$sql = "SELECT * FROM dependent_steps WHERE recipe = " . $id;
+		$dependencies = DB::instance(DB_NAME)->select_rows( $sql );
+		$recipe['dependencies'] = $dependencies;
+
+		// return the object as a JSON string
 		echo json_encode( $recipe );
-		
+
 	}
 	
-	public function retrieve( $recipe_id ) {
+	public function load_recipe( $recipe_id ) {
+		$view = View::instance( 'v_build_recipe' );
+		$step_view = View::instance('v_recipe_step');
+		$step_id = 0;
 		$response = '';
-		$view = View::instance('v_recipe_step');
-    $recipe = DB::instance(DB_NAME)->select_row("SELECT * FROM recipes WHERE id = " . id );
+    $recipe = DB::instance(DB_NAME)->select_row("SELECT * FROM recipes WHERE id = " . $recipe_id );
+		$view->name = $recipe['name'];
+		$view->description = $recipe['description'];
 		// deal with error
-		$steps = DB::instance(DB_NAME)->select_rows("SELECT * FROM steps WHERE id = " . id );
+		$steps = DB::instance(DB_NAME)->select_rows(
+			"SELECT s.*,t.* FROM steps s JOIN step_types t ON s.type = t.id WHERE recipe = " . $recipe_id );
 		foreach ($steps as $step) {
-			$view->name = $step['name'];
-			$view->icon = $step['icon_url'];
-			$view->html = $step['html'];
-			$response .= $view;
+			print_r( $step );
+			$view->name = $step_type['name'];
+			$view->icon = $step_type['icon_url'];
+			$view->html = $step_type['html'];
+			$response .= $step_view;
 		}
 
 		echo $response;
 
   }
+
+	public function exec_load( $recipe_id) {
+		self::retrieve( $recipe_id );
+	}
 	
+	public function delete( $recipe_id ) {
+		if (is_null($recipe_id)) {
+			echo "No id supplied for delete recipe";
+		}
+		DB::instance(DB_NAME)->delete('recipes','WHERE id = '. $recipe_id);
+		DB::instance(DB_NAME)->delete('steps','WHERE recipe = '. $recipe_id);
+		DB::instance(DB_NAME)->delete('dependent_steps','WHERE recipe = '. $recipe_id);
+	}
 	
 
 } # end of the class

@@ -16,9 +16,18 @@ class index_controller extends base_controller {
 		$this->template->content->lsb = View::instance('v_index_user');
 
 		//$this->template->content->main_display = View::instance('v_build_recipe');
-		$this->template->content->main_display = View::instance('v_index_loadform');
-		$this->template->content->main_display->url = '/recipe/retrieve_all';
-		$this->template->content->main_display->element = '#main-display';
+
+		//$this->template->content->main_display = View::instance('v_index_loadform');
+		//$this->template->content->main_display->url = '/recipe/retrieve_all';
+		//$this->template->content->main_display->element = '#main-display';
+
+		//$this->template->content->main_display = View::instance('v_index_loadform');
+		//$this->template->content->main_display->url = '/recipe/load_builder';
+		//$this->template->content->main_display->element = '#recipe-builder';
+
+		//$this->template->content->main_display = View::instance('v_index_loadform');
+		//$this->template->content->main_display->url = '/step_type/retrieve';
+		//$this->template->content->main_display->element = '#step-type-list';
 
 		$this->template->content->rsb = View::instance('v_instructions');
 		
@@ -33,7 +42,7 @@ class index_controller extends base_controller {
 				"./css/recipe-builder.css",
 				"./js/recipe-class.js",
 				"./js/jquery.form.js",
-				"./js/loadform.js",
+				"./js/functions.js",
 				"./js/scripts.js"
 		);
 

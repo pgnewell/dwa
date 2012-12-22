@@ -1,10 +1,10 @@
-ß<?php
+<?php
 class step_type_controller extends base_controller {
 
-	static $step_map = [];
+	static $step_map = array();
 	
-  public function __construct() {
-    parent::__construct();
+	public function __construct() {
+		parent::__construct();
 
   }
 
@@ -12,8 +12,9 @@ class step_type_controller extends base_controller {
 		$view  = View::instance('v_index_loadform');
 		$view->url = '/step_type/retrieve';
 		$view->element = $elementid;
+
 	}
-	
+
 	#
 	public function retrieve() {
 		$response = '';

@@ -13,26 +13,36 @@ function is_empty(obj) {
  	return true;
 }
 
-var done_button = $('#exec-done-button').html();
-
 function RecipeStep (t, i) {
 	this.type = t;
 	this.instructions = i;
 };
 
-function Recipe () {
+function Recipe (input) {
+	this.last_id = 0;
 
 	this.name = '';
 	this.description = '';
 	this.type = '';
 	this.steps = {};
-	this.last_id = 0;
 	this.dependencies = {};
 
 	this.next_id = function () { return 'recipe-step-' + this.last_id++; },
 	
-	this.add_step = function( id, step) {
-		this.steps[id] = step; 	 
+	this.add_step = function( box ) {
+		var type = box.find('img').attr('title');
+		var instruct = box.find('textarea').attr('value');
+		var id = box.attr('id');
+		var step = new RecipeStep(type, instruct);
+
+		this.steps[id] = step;
+		// or css
+		box.find('label').text('');
+		box.find('textarea').attr('disabled','disabled'	);
+		var exec_box = box.clone();
+		exec_box.attr('id','exec-'+id);
+		exec_box.find('textarea').val(step.instructions);
+		$('#recipe-execution').append( exec_box );
 	};
 
 	// this should remove a step from the list and then show any dependent object that
@@ -45,6 +55,8 @@ function Recipe () {
 				delete this.depedencies[dep];
 			}
 		}
+		$('#' + id).remove();
+		$('#' + 'exec-' + id).remove();
 	};
 	
 	// add a dependency should also att a class that makes it dependent (not really used)
@@ -66,5 +78,29 @@ function Recipe () {
 //		var recipe = new Recipe();
 //		recipe.name = this.name;
 	} 
-	
+
+	if (typeof(input) !== 'undefined') {
+		//var recipe = JSON.parse( input );
+		this.id = input.id;
+		this.name = input.name;
+		this.description = input.description;
+		this.picture_url = input.picture_url;
+		var steps = input.steps;
+		var step_ids = {};
+		for(var idx=0; idx<steps.length; idx++) {
+			var this_step = steps[idx];
+			var step_box = find_step_type( this_step['type_name'] );
+			var box = new_step_from_type( this, step_box );
+			var step = new RecipeStep( this_step['type'], this_step['instructions'] );
+			box.find('textarea').attr('value', this_step['instructions']);
+			this.add_step( box );
+			step_ids[this_step['seq']] = box.attr('id');
+		}
+		var dep = input.dependencies;
+		for(var idx=0; idx<dep.length; idx++) {
+			var d = dep[idx];
+			this.add_dependency(step_ids[d['dependant']], step_ids[d['dependent']]);
+		}
+	}
+
 }; // eoc

@@ -1,16 +1,16 @@
 #main { width: 95%; }
 
-#main-header {  height: 100px; border: 1px solid black; }
+#main-header {  height: 100px; background-color: darkgray;  }
 
-#main-body { height: 390px; border: 1px solid red; }
+#main-body { height: 390px; }
 
 .main-subview { height: 100%; overflow-y: auto; }
 
-#left-sidebar { width: 185px; border: 1px dotted orange; float: left; }
+#left-sidebar { width: 185px; background-color: lightgray; float: left; }
 
-#right-sidebar { width: 250px; border: 1px dotted orange; float: right; }
+#right-sidebar { width: 250px; background-color: lightgray; float: right; }
 
-#main-display { width: 600px; border: 1px dotted cyan; float: left; }
+#main-display { width: 600px; float: left; }
 
 #sidebar-menu {}
 
@@ -20,13 +20,19 @@
 	  margin: 3px; height: 98%; background-color: #ededed; }
 
 #recipe-content { margin: 3px; width: 400px; float: left; 
-	  background-color: #ededed; height: 98%; overflow-y: scroll; }
+	  background-color: #ededed; height: 98%; overflow-y: auto; }
 
 #recipe-content-header { height: 50px; width: 100%; background-color:	#8FBC8F; }
 
-#recipe-execution-list { overflow-y: scroll; }
+#recipe-execution-list { overflow-y: auto; }
 
-.recipe-display-item { clear: both; }
+.recipe-display-item
+{
+	border-bottom: thin dotted;
+  clear: both;
+  height: 25px;
+  margin: 3px;
+}
 
 .recipe-item-picture { float: left; }
 
@@ -35,3 +41,7 @@
 .recipe-item-desc { width: 50%; margin: 2px; float: left; }
 
 .display-buttons { float: left; }
+
+#recipe-display-list { overflow-y: auto; }
+
+#main-header h1 { cursor: pointer; }

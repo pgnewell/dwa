@@ -8,6 +8,6 @@
 		<?=$description?>
 	</div>
 	<div class='display-buttons'>
-		<input type='button' value='Execute'/>
+		<input id='exec-<?=$recipe_id?>' class='display-recipe-exec' type='button' value='Execute'/>
 	</div>
-</div>
+</div>	

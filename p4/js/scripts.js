@@ -22,8 +22,7 @@ $(document).ready(function() { // start doc ready; do not delete this!
 	// the actions related to a new recipe should be here
 	
 	$('#recipe-build').click( function () {
-		loadform( '/recipe/load_builder', '#main-display');
-		loadform( '/step_type/retrieve', '#step-type-list' );
+		show_build();
 	});
 
 	$('#user-signup').click( function () {
@@ -31,9 +30,27 @@ $(document).ready(function() { // start doc ready; do not delete this!
 	});
 
 	$('#users-profile').click( function () {
-		loadform( 'users/profile', '#main-display');
+		loadform( '/users/profile', '#main-display');
 	});
 
+	$('.display-recipe-exec').live ( 'click', function (){
+		var id = $(this).attr('id').replace('exec-', '');
+		var options = { 
+			type: 'POST',
+			url: '/recipe/retrieve_recipe/' + id,
+			beforeSubmit: function() {
+				$('#message-block').html("Loading recipe...");
+			},
+			success: function(response) {
+				var load_recipe = JSON.parse(response);
+				this_recipe = new Recipe(load_recipe);
+				show_exec(this_recipe);
+				
+			} 
+		}; 
+		$.ajax(options);
+		
+	});
 	var this_recipe = new Recipe();
 
 	// -----------------------------------------------------------------
@@ -42,28 +59,20 @@ $(document).ready(function() { // start doc ready; do not delete this!
 	// recipe with the form included. visibility is determined by css - turn 
 	// off step icons
 	$("#recipe-palette .recipe-step").live ('click', function() {
-		var new_box = $(this).clone();
-		new_box.addClass('recipe-step');
-		new_box.attr('id',this_recipe.next_id());
+		var new_box = new_step_from_type(this_recipe,$(this));
 		new_box.addClass( 'current-step' );
-		$("#recipe-footer").before( new_box );
 		$('#recipe-palette .recipe-step').toggleClass('icon-error recipe-step');
 	});	
 
 	// activate the two action buttons turn the icons-click back on
 	$('.current-step .build-done-button').live ('click', function() {
 		var box = $(this).parent().parent();
-		var type = box.find('img').attr('alt');
 		var instruct = box.find('textarea').attr('value');
-		var id = box.attr('id');
-		var step = new RecipeStep(type, instruct);
 		if (box.find('textarea').val().length == 0) {
 			$('#message-block').html('Cannot add without instructions');
-			$('#message-block').removeClass('hide');
 		} else {
 			$('#message-block').html('');
-			$('#message-block').addClass('hide');
-			this_recipe.add_step( id, step );
+			this_recipe.add_step( box );
 			box.toggleClass( 'current-step completed-step' );
 			$('#recipe-palette .icon-error').toggleClass('icon-error recipe-step');
 		};
@@ -80,58 +89,62 @@ $(document).ready(function() { // start doc ready; do not delete this!
 				$('#message-block').html("Saving recipe...");
 			},
 			success: function(response) {
-				$('#message-block').html("Your post was added.");
+				$('#message-block').html("Your recipe was added with id: " + response);
+				this_recipe.id = response;
 			} 
 		}; 
 		$.ajax(options);
 	});
 
+	$('#main-header h1').click( function () {
+		loadform( '/recipe/retrieve_all', '#main-display');
+	})
 	// clicking on an icon while a step is being filled should emit an error
 	$(".icon-error").live ('click', function() {
 		$('#message-block').html('Finish this step or cancel it before adding more');
-		$('#message-block').removeClass('hide');
 	});
 
 	// cancel discards the step being entered
-	$('#id-can-button').live ('click', function() {
+	$('.current-step .del-button').live ('click', function() {
 		$(this).parent().parent().remove();
 		$('#message-block').html('');
-		$('#message-block').addClass('hide');
-		$('.icon-block').toggleClass('icon-error icon-click');
+		$('#recipe-palette .icon-error').toggleClass('icon-error recipe-step');
 	});
 	
 	// delete removes an already filled out step - I'm not giving any warning or
 	// giving any option to change your mind
-	$('.class-del-button').live ('click', function() {
+	$('.completed-step .del-button').live ('click', function() {
 		var box = $(this).parent().parent();
-		this_recipe.delete_step( box );		
+		var id = box.attr('id');
+		this_recipe.delete_step(id);		
 	});
 
 	// depends disables itself and makes all other depends buttons "depends on"
-	$('.class-depends-button').live ('click', function() {
+	$('.depends-button').live ('click', function() {
 		dependant = $( this ).parent().parent().attr('id');
-		$( this ).removeClass( 'class-depends-button');
+		$( this ).removeClass( 'depends-button');
 		$( this ).addClass( 'dependant' );
-		$('.class-depends-button').toggleClass( 'class-depends-button depends-on' );
+		$('.depends-button').toggleClass( 'depends-button depends-on' );
 		$('.depends-on')
 			.attr( 'value', 'Depends on' )
 			.click( function () {
 				var this_step = $( this ).parent().parent().attr('id');
-				Recipe.add_dependency( dependant, this_step );
-				$('.depends-on').addClass( 'class-depends-button' );
-				$('.depends-on').removeClass( 'depends-on' );
-				$('.class-depends-button').attr('value', 'Depends');
+				this_recipe.add_dependency( dependant, this_step );
+				$('.depends-on').toggleClass( 'depends-button depends-on' );
+				$('.depends-button').attr('value', 'Depends');
 				dependant = '';
 			});
 	});
 
 	// execute the recipe
 	$('#execute-recipe').click ( function () {
-			$('#execute-recipe textarea').prop('disabled', true);
-		$('recipe-content').addClass( 'hide' );
-		$('recipe-palette').addClass( 'hide' );
-		$('#recipe-execution').removeClass('hide');
+		$('#recipe-execution textarea').prop('disabled', true);
+		show_exec(this_recipe);
 	});
+
+loadform( '/recipe/retrieve_all','#recipe-display-list' );
+loadform( '/recipe/load_builder', '#recipe-builder' );
+loadform( '/step_type/retrieve', '#step-type-list' );
 
 //	$(".icon-block").draggable({ containment: "#recipe-block" });
 //   	$( ".draggable" ).draggable({ revert: "invalid" });
