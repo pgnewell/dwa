@@ -10,6 +10,8 @@ At this time there are several problems.
 
 I promised edit and photos. I almost got edit but no. photos should be easy, but alas. Nothing else was.
 
+The login screen gives no failure message. Apparently there is a reason why no one uses static variables in php. I guess its always a new process so nothing sticks around. You could probably do some ajax thing but ... no time.
+
 The dependencies go into the database correctly but they dont get used properly. The execution window doesnt seem to get them.
 
 To add to all this something on the server isnt working at all. Apparently the mechanism I use to load screens from php via ajax is failing. I am debugging.
