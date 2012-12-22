@@ -1,7 +1,7 @@
 <div id='main'>
 
 	<div id='main-header'>
-		<h1>A Cute Title</h1>
+		<h1>Active Cookbook</h1>
 		<h2>DWA Project 4</h2>
 		<h3>
 			<p>
@@ -43,5 +43,5 @@
 			<?=$rsb?>
 		</div>
 	</div>
-	
+	<div id='main-footer'></div>
 </div>

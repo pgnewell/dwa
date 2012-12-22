@@ -1,4 +1,4 @@
-#main { width: 95%; }
+#main { width: 960px; }
 
 #main-header {  height: 100px; background-color: darkgray;  }
 
@@ -6,11 +6,13 @@
 
 .main-subview { height: 100%; overflow-y: auto; }
 
-#left-sidebar { width: 185px; background-color: lightgray; float: left; }
+#left-sidebar { width: 160px; background-color: lightgray; float: left; }
 
-#right-sidebar { width: 250px; background-color: lightgray; float: right; }
+#right-sidebar { width: 160px; background-color: lightgray; float: right; }
 
-#main-display { width: 600px; float: left; }
+#main-display { width: 640px; float: left; }
+
+#main-footer { height: 20px; background-color: darkgray; border: thick solid; }
 
 #sidebar-menu {}
 
