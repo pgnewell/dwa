@@ -47,3 +47,5 @@
 #recipe-display-list { overflow-y: auto; }
 
 #main-header h1 { cursor: pointer; }
+
+#user-login-message { color: red; }

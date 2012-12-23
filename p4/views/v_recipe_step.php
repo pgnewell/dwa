@@ -1,5 +1,5 @@
 <div class='recipe-step'>
-	<img src='../images/<?=$icon?>' alt='<?=$name?>' title='<?=$name?>'/>
+	<img src='/images/<?=$icon?>' alt='<?=$name?>' title='<?=$name?>'/>
 	<div class='caption'><?=$name?></div>
 	<div class='step-instructions'>
 		<?=$html?>

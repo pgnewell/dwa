@@ -53,13 +53,18 @@ class users_controller extends base_controller {
   # not used
   public function login() {    
     $this->template->content = View::instance( 'v_users_login' );
+		$this->template->content->message = self::$login_message;
     echo $this->template;
   }
 
   # called from v_users_login
   public function p_login() {
+		$login_message = '';
     $token = $this->userObj->login( $_POST['email'], $_POST['password'] );
-    Router::redirect('/');
+		if (!$token) {
+			$login_message = "Login failed for email " . $_POST['email'];
+		}
+    Router::redirect( '/index/index/' . $login_message );
   }
 
   public function logout_test() {

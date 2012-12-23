@@ -9,11 +9,11 @@ class index_controller extends base_controller {
 	/*-------------------------------------------------------------------------------------------------
 	Access via http://yourapp.com/index/index/
 	-------------------------------------------------------------------------------------------------*/
-	public function index() {
-		
+	public function index($login_message = null) {
 		# Set up main window and initial displays for each part
 		$this->template->content = View::instance('v_index_index');
 		$this->template->content->lsb = View::instance('v_index_user');
+		$this->template->content->lsb->message = $login_message;
 
 		//$this->template->content->main_display = View::instance('v_build_recipe');
 
@@ -37,13 +37,13 @@ class index_controller extends base_controller {
 		# If this view needs any JS or CSS files, add their paths to this 
 		# array so they will get loaded in the head
 		$client_files = Array(
-				"./css/class.css",
-				"./css/recipe.css",
-				"./css/recipe-builder.css",
-				"./js/recipe-class.js",
-				"./js/jquery.form.js",
-				"./js/functions.js",
-				"./js/scripts.js"
+				"/css/class.css",
+				"/css/recipe.css",
+				"/css/recipe-builder.css",
+				"/js/recipe-class.js",
+				"/js/jquery.form.js",
+				"/js/functions.js",
+				"/js/scripts.js"
 		);
 
 	  $this->template->client_files = Utils::load_client_files($client_files);   

@@ -6,7 +6,7 @@
 			<form method='POST' action='/users/p_login'>
 			  Email:<br>
 			  <input type='text' name='email'><br>
-			  Password:<br>
+			  Password::<br>
 			  <input type='password' name='password'><br>
 			  <input type='submit' value='Login'>
 			</form>
@@ -15,6 +15,7 @@
       <a href='#' id='user-signup'>Sign up</a>
     </li>
   </ul>
+	<p id='user-login-message'><?=$message?></p>
 
 </div>
 
