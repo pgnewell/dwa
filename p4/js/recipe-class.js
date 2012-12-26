@@ -48,11 +48,15 @@ function Recipe (input) {
 	// this should remove a step from the list and then show any dependent object that
 	// now has no dependencies
 	this.delete_step = function (id) {
-		delete this.steps[id];
-		delete this.dependencies[id];
+		if (id in this.steps) {
+			delete this.steps[id];
+		}
+		if (id in this.dependencies) {
+			delete this.dependencies[id];
+		}
 		for (var dep in this.dependencies) { 
-			if (this.dependencies[dep] = id) { 
-				delete this.depedencies[dep];
+			if (this.dependencies[dep] == id) { 
+				delete this.dependencies[dep];
 			}
 		}
 		$('#' + id).remove();
@@ -70,6 +74,14 @@ function Recipe (input) {
 		
 	};
 	
+	this.remove_dependent = function (id) {
+		for (idx=0; idx<this.dependencies.length; idx++) {
+			dep = this.dependencies[idx];
+			if (dep.dependent == id) {
+				delete dep;
+			}
+		}
+	}
 	this.has_dependency = function (id) {
 		return (id in this.dependencies);
 	}
@@ -85,7 +97,9 @@ function Recipe (input) {
 		this.name = input.name;
 		this.description = input.description;
 		this.picture_url = input.picture_url;
-		var steps = input.steps;
+		$('#recipe-name').val(this.name);
+		$('#recipe-description').val(this.description);
+		var steps = input.steps.sort(function (a,b) {return a['seq']-b['seq'];});
 		var step_ids = {};
 		for(var idx=0; idx<steps.length; idx++) {
 			var this_step = steps[idx];
@@ -93,6 +107,7 @@ function Recipe (input) {
 			var box = new_step_from_type( this, step_box );
 			var step = new RecipeStep( this_step['type'], this_step['instructions'] );
 			box.find('textarea').attr('value', this_step['instructions']);
+			box.addClass('completed-step');
 			this.add_step( box );
 			step_ids[this_step['seq']] = box.attr('id');
 		}

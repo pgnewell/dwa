@@ -22,6 +22,7 @@ $(document).ready(function() { // start doc ready; do not delete this!
 	// the actions related to a new recipe should be here
 	
 	$('#recipe-build').click( function () {
+		this_recipe = new Recipe();
 		show_build();
 	});
 
@@ -31,6 +32,41 @@ $(document).ready(function() { // start doc ready; do not delete this!
 
 	$('#users-profile').click( function () {
 		loadform( '/users/profile', '#main-display');
+	});
+
+	$('.display-recipe-edit').live ( 'click', function () {
+		var id = $(this).attr('id').replace('edit-', '');
+		var options = { 
+			type: 'POST',
+			url: '/recipe/retrieve_recipe/' + id,
+			beforeSubmit: function() {
+				$('#message-block').html("retrieving recipe " + id);
+			},
+			success: function(response) {
+				var load_recipe = JSON.parse(response);
+				this_recipe = new Recipe( load_recipe );
+				show_build();
+			}
+		}; 
+		$.ajax(options);
+	});
+
+	$('.display-recipe-del').live ( 'click', function () {
+		var row = $(this).parent().parent();
+		var id = $(this).attr('id').replace('del-', '');
+		var options = { 
+			type: 'POST',
+			url: '/recipe/delete/' + id,
+			beforeSubmit: function() {
+				$('#message-block').html("deleting recipe " + id);
+			},
+			success: function(response) {
+				var load_recipe = JSON.parse(response);
+				$('#exec-' + id).parent().parent().hide();;
+				$('#message-block').html("deleted recipe " + response);
+			}
+		}; 
+		$.ajax(options);
 	});
 
 	$('.display-recipe-exec').live ( 'click', function (){
@@ -80,23 +116,34 @@ $(document).ready(function() { // start doc ready; do not delete this!
 
 	$('#save-recipe').live( 'click', function () {
 		this_recipe.name = $('#recipe-name').val();
-		this_recipe.description = $('#recipe-description').val();
-		var options = { 
-			type: 'POST',
-			url: '/recipe/save/',
-			data: { recipe: JSON.stringify(this_recipe) },
-			beforeSubmit: function() {
-				$('#message-block').html("Saving recipe...");
-			},
-			success: function(response) {
-				$('#message-block').html("Your recipe was added with id: " + response);
-				this_recipe.id = response;
-			} 
-		}; 
-		$.ajax(options);
+		if (this_recipe.name == '') {
+			$('#message-block').html("You must enter a name to save a recipe");
+		} else {
+			this_recipe.description = $('#recipe-description').val();
+			var options = { 
+				type: 'POST',
+				url: '/recipe/save/',
+				data: { recipe: JSON.stringify(this_recipe) },
+				beforeSubmit: function() {
+					$('#message-block').html("Saving recipe...");
+				},
+				success: function(response) {
+					if (!isNaN(response)) {
+						$('#message-block').html("Your recipe was added with id: " + response);
+						this_recipe = new Recipe();
+						loadform( '/recipe/retrieve_all', '#main-display');
+					} else {
+						$('#message-block').html("Save failed with " + response);
+					}
+					this_recipe.id = response;
+				} 
+			}; 
+			$.ajax(options);
+		}
 	});
 
-	$('#main-header h1').click( function () {
+	$('#main-header h1,return-to-main').click( function () {
+		this_recipe = new Recipe();
 		loadform( '/recipe/retrieve_all', '#main-display');
 	})
 	// clicking on an icon while a step is being filled should emit an error

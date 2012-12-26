@@ -10,30 +10,39 @@ class users_controller extends base_controller {
     Router::redirect("/");
   }
 
-  # this redirects to post since that is where all the queries are done on posts
-  public function profile($user_id = NULL) {
+	# this redirects to post since that is where all the queries are done on posts
+	public function profile($user_id = NULL) {
 		$view = View::instance( 'v_users_profile' );
 		$view->user = $this->user;
 		echo $view;
   }
 
-  public function signup() {
-    $this->template->content = View::instance( 'v_users_signup' );
-    echo $this->template;
-  }
-  
-  public function p_signup() {
-    $_POST['password'] = User::hash_password($_POST['password'])	;
-    $_POST['token'] = sha1(
+	public function signup($message = null) {
+		echo 'starting instance';
+		$this->template->content = View::instance( 'v_users_signup' );
+		$this->template->content->m = $message || '';
+		print_r( $this->template);
+		echo $this->template;
+	}
+
+	public function p_signup() {
+		if (trim($_POST['email']) == '' || trim($_POST['first_name'] . $_POST['last_name'])) {
+			$message = 'You must enter an email address and first or last name to sign up';
+			Router::redirect("/users/signup/" . $message );
+		} else {
+			$message = '';
+			$_POST['password'] = User::hash_password($_POST['password'])	;
+			$_POST['token'] = sha1(
 			   TOKEN_SALT.
 			   $_POST['email'].
 			   Utils::generate_random_string()
-			   );
-    $_POST['created'] = Time::now();
-    $_POST['modified'] = Time::now();
-    DB::instance(DB_NAME)->insert('users', $_POST);
+			);
+			$_POST['created'] = Time::now();
+			$_POST['modified'] = Time::now();
+			DB::instance(DB_NAME)->insert('users', $_POST);
+			Router::redirect("/" . $message );
+		}
     // print_r( $_POST );
-    Router::redirect("/");
   }
   
   // this is not really happening.

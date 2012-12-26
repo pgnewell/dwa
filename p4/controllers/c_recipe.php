@@ -14,44 +14,54 @@ class recipe_controller extends base_controller {
 
 	// save recipe and the associated steps and dependencies
 	public function save() {
-		$recipe = json_decode( $_POST['recipe'] );
-		$dependencies = $recipe->dependencies;
-		//print_r( $recipe );
-		//echo $recipe->name . " has " . count($steps) . " steps!";
-		
-		// insert the recipe and retain the id
-		$r['name'] = $recipe->name;
-		$r['description'] = $recipe->description;
-		$r['user'] = $this->user->id;
-		//$r['picture_url'] = $_POST['picture_url'];
-		$id = DB::instance(DB_NAME)->insert('recipes', $r);
-		//echo "recipe " . $recipe->name . " now has id: " . $id;
-		//$response = '';
-		$seq_map = array();
-		$seq = 1;
+		$response = '';
+		$recipe = json_decode($_POST['recipe'] );
+		if (trim($recipe->name) == '') {
+			$response = "Can't save recipe without a name";
+		} else {
+			$old_recipe = $recipe->id;
+			$dependencies = $recipe->dependencies;
+			//print_r( $recipe );
+			//echo $recipe->name . " has " . count($steps) . " steps!";
 
-		// inserting the corresponding steps in the steps file
-		foreach ($recipe->steps as $step_id => $step) {
-			$type_id = DB::instance(DB_NAME)->select_field( 
-				"SELECT id FROM step_types WHERE name = '" . $step->type . "'");
-			//$response .= $step->type . " is " . $type_id . "\n";
-			$seq_map[$step_id] = $seq;
-			$s['seq'] = $seq++;
-			$s['recipe'] = $id;
-			$s['type'] = $type_id;
-			$s['instructions'] = $step->instructions;
-			DB::instance(DB_NAME)->insert('steps', $s);
-		}
+			// insert the recipe and retain the id
+			$r['name'] = $recipe->name;
+			$r['description'] = $recipe->description;
+			$r['user'] = $this->user->id;
+			//$r['picture_url'] = $_POST['picture_url'];
+			$id = DB::instance(DB_NAME)->insert('recipes', $r);
+			//echo "recipe " . $recipe->name . " now has id: " . $id;
+			//$response = '';
+			$seq_map = array();
+			$seq = 1;
 
-		// insert the dependencies using the map to remember what
-		// the step is called in the table
-		foreach ($recipe->dependencies as $dependant => $depended_upon) {
-			$d['recipe'] = $id;
-			$d['dependant'] = $seq_map[$dependant];
-			$d['dependent'] = $seq_map[$depended_upon];
-			DB::instance(DB_NAME)->insert('dependent_steps', $d);
+			// inserting the corresponding steps in the steps file
+			foreach ($recipe->steps as $step_id => $step) {
+				$type_id = DB::instance(DB_NAME)->select_field( 
+					"SELECT id FROM step_types WHERE name = '" . $step->type . "'");
+				//$response .= $step->type . " is " . $type_id . "\n";
+				$seq_map[$step_id] = $seq;
+				$s['seq'] = $seq++;
+				$s['recipe'] = $id;
+				$s['type'] = $type_id;
+				$s['instructions'] = $step->instructions;
+				DB::instance(DB_NAME)->insert('steps', $s);
+			}
+
+			// insert the dependencies using the map to remember what
+			// the step is called in the table
+			foreach ($recipe->dependencies as $dependant => $depended_upon) {
+				$d['recipe'] = $id;
+				$d['dependant'] = $seq_map[$dependant];
+				$d['dependent'] = $seq_map[$depended_upon];
+				DB::instance(DB_NAME)->insert('dependent_steps', $d);
+			}
+			$response = $id;
+			if ($old_recipe > 0) {
+				//self::delete( $old_recipe );
+			}
 		}
-		echo $id;
+		echo $response;
 
 	}
 
@@ -95,7 +105,7 @@ class recipe_controller extends base_controller {
 		$recipe['dependencies'] = $dependencies;
 
 		// return the object as a JSON string
-		echo json_encode( $recipe );
+		echo json_encode( $recipe, JSON_PRETTY_PRINT );
 
 	}
 	
@@ -133,7 +143,7 @@ class recipe_controller extends base_controller {
 		DB::instance(DB_NAME)->delete('recipes','WHERE id = '. $recipe_id);
 		DB::instance(DB_NAME)->delete('steps','WHERE recipe = '. $recipe_id);
 		DB::instance(DB_NAME)->delete('dependent_steps','WHERE recipe = '. $recipe_id);
+		echo $recipe_id;
 	}
-	
 
 } # end of the class

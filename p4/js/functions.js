@@ -38,10 +38,10 @@ function new_step_from_type ( recipe, type_box ) {
 // show the others
 function hide_dependants(recipe) {
 	for (var step in recipe.steps) {
-		if (recipe.dependencies[step.id]) {
-			$('#exec-' + step.id).hide();
+		if (step in recipe.dependencies) {
+			$('#exec-' + step).hide();
 		} else {
-			$('#exec-' + step.id).show();
+			$('#exec-' + step).show();
 		}
 	}
 }
@@ -67,8 +67,8 @@ function show_exec(recipe) {
 	$('#recipe-execution .exec-done-button').click( function () {
 		var step = $(this).parent().parent();
 		var id = step.attr('id').replace('exec-', '');
+		recipe.delete_step(id);
 		hide_dependants(recipe);
-		step.remove();
 	})
 
 }

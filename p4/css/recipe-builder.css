@@ -5,11 +5,11 @@ div[class*="depends-on-"] { display: none; }
 
 /*.recipe-step { margin: 2px; background-color: #E0E0E0; }*/
 
-.recipe-step { clear: both; }
+#recipe-content .recipe-step { clear: both; }
 .recipe-step textarea { height: 40px; }
 .build-buttons, #save-recipe { float: right; }
 
-#recipe-execution div.recipe-step { height: 125px; width 150px; float: left; }
+#recipe-execution div.recipe-step { height: 125px; width 150px; float: left; border: solid blue; margin: 3px; }
 
 #recipe-palette .recipe-step,#recipe-palette .icon-error
 	{ background-color: #E0E0E0; margin: 2px; width: 160px; height: 29px; cursor: pointer; }

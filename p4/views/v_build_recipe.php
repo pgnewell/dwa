@@ -19,12 +19,11 @@ drop is gone and one for the message for any error messages.
 <div id='recipe-content'>
 	<div id='recipe-header'>
 		<h4>Recipe</h4>
-		<form method='POST'>
 		  Name<br>
 		  <input id='recipe-name' type='text' name='Recipe name' value='<?=$name?>'><br>
 			Description<br>
 		  <textarea id='recipe-description' name='description' value='<?=$description?>'></textarea><br>
-		</form>
+			<input id='recipe-picture' type='file' name='picture' />
 	</div>
 	<div id='recipe-step-list'>
 		<div id='recipe-footer' class='recipe-step droppable'>

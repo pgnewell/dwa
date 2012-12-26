@@ -32,20 +32,23 @@
 {
 	border-bottom: thin dotted;
   clear: both;
-  height: 25px;
   margin: 3px;
 }
+
+.recipe-execution .recipe-step { border: solid; float: left; }
 
 .recipe-item-picture { float: left; }
 
 .recipe-item-name { width: 30%; margin: 2px; float: left; }
 
-.recipe-item-desc { width: 50%; margin: 2px; float: left; }
+.recipe-item-desc { width: 40%; margin: 2px; float: left; }
 
-.display-buttons { float: left; }
+.display-buttons { float: right; }
 
 #recipe-display-list { overflow-y: auto; }
 
 #main-header h1 { cursor: pointer; }
 
 #user-login-message { color: red; }
+
+.footer { clear: both; }
