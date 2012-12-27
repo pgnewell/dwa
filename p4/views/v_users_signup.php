@@ -8,6 +8,5 @@
 	Password: <br>
 	<input type='password' name='password'><br>
 	<input type='submit' value='Sign Up'><br>
-	<?=$m?>
 </form>  
 

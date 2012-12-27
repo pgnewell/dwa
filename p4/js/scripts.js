@@ -23,6 +23,7 @@ $(document).ready(function() { // start doc ready; do not delete this!
 	
 	$('#recipe-build').click( function () {
 		this_recipe = new Recipe();
+		clear_recipe();
 		show_build();
 	});
 
@@ -131,12 +132,17 @@ $(document).ready(function() { // start doc ready; do not delete this!
 					if (!isNaN(response)) {
 						$('#message-block').html("Your recipe was added with id: " + response);
 						this_recipe = new Recipe();
-						loadform( '/recipe/retrieve_all', '#main-display');
+						clear_recipe();
+						loadform( '/recipe/retrieve_all', '#recipe-display-list');
+						show_display();
 					} else {
 						$('#message-block').html("Save failed with " + response);
 					}
 					this_recipe.id = response;
-				} 
+				},
+				error: function(xhr, tStatus, err) {
+					$('#message-block').html('save failed with:');
+				}
 			}; 
 			$.ajax(options);
 		}
@@ -144,7 +150,8 @@ $(document).ready(function() { // start doc ready; do not delete this!
 
 	$('#main-header h1,return-to-main').click( function () {
 		this_recipe = new Recipe();
-		loadform( '/recipe/retrieve_all', '#main-display');
+		clear_recipe();
+		loadform( '/recipe/retrieve_all', '#recipe-display-list');
 	})
 	// clicking on an icon while a step is being filled should emit an error
 	$(".icon-error").live ('click', function() {

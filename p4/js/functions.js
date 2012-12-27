@@ -72,3 +72,9 @@ function show_exec(recipe) {
 	})
 
 }
+
+function clear_recipe() {
+	$('#recipe-content .completed-step').remove();
+	$('#recipe-name').val('');
+	$('#recipe-description').val('');
+}

@@ -17,9 +17,9 @@ class recipe_controller extends base_controller {
 		$response = '';
 		$recipe = json_decode($_POST['recipe'] );
 		if (trim($recipe->name) == '') {
-			$response = "Can't save recipe without a name";
+			header("HTTP/1.1 500 Recipe needs a name");
+			die("Can't save recipe without a name");
 		} else {
-			$old_recipe = $recipe->id;
 			$dependencies = $recipe->dependencies;
 			//print_r( $recipe );
 			//echo $recipe->name . " has " . count($steps) . " steps!";
@@ -57,7 +57,7 @@ class recipe_controller extends base_controller {
 				DB::instance(DB_NAME)->insert('dependent_steps', $d);
 			}
 			$response = $id;
-			if ($old_recipe > 0) {
+			if (property_exists($recipe, 'id') && $recipe->id > 0) {
 				//self::delete( $old_recipe );
 			}
 		}

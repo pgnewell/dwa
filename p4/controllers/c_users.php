@@ -20,15 +20,13 @@ class users_controller extends base_controller {
 	public function signup($message = null) {
 		echo 'starting instance';
 		$this->template->content = View::instance( 'v_users_signup' );
-		$this->template->content->m = $message || '';
-		print_r( $this->template);
 		echo $this->template;
 	}
 
 	public function p_signup() {
-		if (trim($_POST['email']) == '' || trim($_POST['first_name'] . $_POST['last_name'])) {
+		if (trim($_POST['email']) == '' || trim($_POST['first_name'] . $_POST['last_name']) == '') {
 			$message = 'You must enter an email address and first or last name to sign up';
-			Router::redirect("/users/signup/" . $message );
+			Router::redirect("/" );
 		} else {
 			$message = '';
 			$_POST['password'] = User::hash_password($_POST['password'])	;
@@ -40,7 +38,7 @@ class users_controller extends base_controller {
 			$_POST['created'] = Time::now();
 			$_POST['modified'] = Time::now();
 			DB::instance(DB_NAME)->insert('users', $_POST);
-			Router::redirect("/" . $message );
+			Router::redirect("/");
 		}
     // print_r( $_POST );
   }
