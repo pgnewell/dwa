@@ -19,6 +19,24 @@ function loadform ( url, windowdiv ) {
 	$.ajax( loadform_options );
 };
 
+function test_json ( o ) {
+	var test_json_options = { 
+		type: 'POST',
+		url:  '/index/test_json',
+		data: { object: JSON.stringify(o) },
+		beforeSubmit: function() {
+			$('#results').html("Working...");
+		},
+		success: function(response) {
+			$('body').html(response);
+		},
+		error: function (xhr, ajaxOptions, thrownError) {
+			alert("status " + xhr.status + thrownError);
+    }
+	};
+	$.ajax( test_json_options );
+};
+
 //find the box in recipe-palette for the step type
 function find_step_type (type ) {
 	var box = $('#recipe-palette .recipe-step').find("img[title='"+type+"']");

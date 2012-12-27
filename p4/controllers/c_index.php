@@ -57,5 +57,12 @@ class index_controller extends base_controller {
 		echo View::instance( $file );
 	}
 	
+	public function test_json () {
+		$data = $_POST['object'];
+		echo $_POST['object'];
+		$obj = json_decode($data);
+		echo Debug::dump($obj);
+	}
+	
 		
 } // end class
