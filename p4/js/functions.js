@@ -96,3 +96,30 @@ function clear_recipe() {
 	$('#recipe-name').val('');
 	$('#recipe-description').val('');
 }
+
+function set_depends_button (element) {
+	element.click ( function() {
+		$('#recipe-content .depends-button').toggleClass( 'depends-on depends-button' );
+		// turn both back on
+		dependant = element.parent().parent().attr('id');
+		element
+			.toggleClass( 'dependant depends-on' )
+			.attr('value', 'Cancel depends')
+			.click ( function () {
+				$('#recipe-content .depends-on').toggleClass( 'depends-on depends-button' );
+				element.attr('value', 'Depends');
+				$('#recipe-content .depends-button').attr('value', 'Depends')
+				dependant = '';
+			});
+		$('#recipe-content .depends-on')
+			.attr( 'value', 'Depends on' )
+			.click( function () {
+				var this_step = $( this ).parent().parent().attr('id');
+				this_recipe.add_dependency( dependant, this_step );
+				$('#recipe-content .depends-on').toggleClass( 'depends-on depends-button' );
+				$('#recipe-content .dependant').toggleClass('dependant depends-button')
+				$('#recipe-content .depends-button').attr('value', 'Depends');
+				dependant = '';
+			});
+	});
+}

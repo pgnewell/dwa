@@ -45,6 +45,6 @@ div[class*="depends-on-"] { display: none; }
 
 #recipe-execution .exec-buttons { display: inline }
 
-.current-step .build-done-button,.completed-step .depends-button { display: inline; }
+.current-step .build-done-button,.completed-step .depends-button, completed-step .depends-on { display: inline; }
 
 #recipe-builder { height: 100%; }

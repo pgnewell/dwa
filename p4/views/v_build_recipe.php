@@ -29,6 +29,11 @@ drop is gone and one for the message for any error messages.
 		<div id='recipe-footer' class='recipe-step droppable'>
 			<p>click on a step icon on left</p>
 		  <input id='save-recipe' type='button' value='Save'>
+			<!--
+			<input id='exec-recipe' class='display-recipe-exec' type='button' value='Execute'/>
+			<input id='exec-recipe' class='display-recipe-exec' type='button' value='Execute'/>
+			<input id='del-recipe' class='display-recipe-del' type='button' value='Delete'/>
+			  -->
 		</div>
 	</div>
 	<div id='message-block'></div>

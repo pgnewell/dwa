@@ -8,10 +8,16 @@ So I thought if you could simply add a text box describing a step that the user 
 
 At this time there are several problems. 
 
-I promised edit and photos. I almost got edit but no. photos should be easy, but alas. Nothing else was.
+I promised edit and photos. photos should be easy, but alas. Nothing else was.
 
-The login screen gives no failure message. Apparently there is a reason why no one uses static variables in php. I guess its always a new process so nothing sticks around. You could probably do some ajax thing but ... no time.
+The dependencies can be confusing. It should be able to show what dependencies there are. This is really crucial but I am not sure how to accomplish it without more sophisticated JS than I have at my displosal. As it is youj can really only give one dependency to a step, which makes some sense but I am not sure it is ideal. I orivinally intended that they be drag and drop and this is not as hard as I thought but I am too tired to do it. You can probably make a circular dependency.
 
-The dependencies go into the database correctly but they dont get used properly. The execution window doesnt seem to get them.
+Using ajax proved to be very difficult. The POSTs were reinterpreted by the server and the quotes in ajax data were escaped for a security reason. This took me way too long to discover. You need to strip them in order to parse the json.
 
-To add to all this something on the server isnt working at all. Apparently the mechanism I use to load screens from php via ajax is failing. I am debugging.
+It is slow. There are too many .lives in the JS. This could be easily remedied by removing the buttons from the display and putting them in the edit.
+
+No ordering in the recipe display.
+
+The textareas in the steps need to be auto sizing.
+
+The information area needs to be more dynamic.

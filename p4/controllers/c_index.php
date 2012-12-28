@@ -60,6 +60,8 @@ class index_controller extends base_controller {
 	public function test_json () {
 		$data = $_POST['object'];
 		echo $_POST['object'];
+		if (get_magic_quotes_gpc())
+			$data = stripslashes($data);
 		$obj = json_decode($data);
 		echo Debug::dump($obj);
 	}

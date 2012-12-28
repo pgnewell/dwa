@@ -15,7 +15,10 @@ class recipe_controller extends base_controller {
 	// save recipe and the associated steps and dependencies
 	public function save() {
 		$response = '';
-		$recipe = json_decode($_POST['recipe'] );
+		$data = $_POST['recipe'];
+		if (get_magic_quotes_gpc())
+			$data = stripslashes($data);
+		$recipe = json_decode($data);
 		$dependencies = $recipe->dependencies;
 		//print_r( $recipe );
 		//echo $recipe->name . " has " . count($steps) . " steps!";
@@ -101,7 +104,7 @@ class recipe_controller extends base_controller {
 		$recipe['dependencies'] = $dependencies;
 
 		// return the object as a JSON string
-		echo json_encode( $recipe, JSON_PRETTY_PRINT );
+		echo json_encode( $recipe );
 
 	}
 	

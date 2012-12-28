@@ -1,26 +1,14 @@
 $(document).ready(function() { // start doc ready; do not delete this!
 
 	var dependant = '';
-	//var subview_options = { 
-	//	type: 'POST',
-	//	url: '/step_type/retrieve/',
-	//	beforeSubmit: function() {
-	//		$('#results').html("Working...");
-	//	},
-	//	success: function(response) {
-	//		step_types = jQuery.parseJSON( response );
-	//		
-	//		for( i=0; i< step_types.length; i++ ){
-	//			var step = new RecipeStep (step_types[i]);
-	//			html = step.html();
-	//			$('#step-type-list').append(html);
-	//		}
-	//	} 
-	//};
 
 	// -----------------------------------------------------------------
 	// the actions related to a new recipe should be here
 	
+	loadform( '/recipe/retrieve_all','#recipe-display-list' );
+	loadform( '/recipe/load_builder', '#recipe-builder' );
+	loadform( '/step_type/retrieve', '#step-type-list' );
+
 	$('#recipe-build').click( function () {
 		this_recipe = new Recipe();
 		clear_recipe();
@@ -95,7 +83,7 @@ $(document).ready(function() { // start doc ready; do not delete this!
 	// When the user clicks on a step icon it should create a dialog in the 
 	// recipe with the form included. visibility is determined by css - turn 
 	// off step icons
-	$("#recipe-palette .recipe-step").live ('click', function() {
+	$("#recipe-palette .recipe-step").live( 'click', function() {
 		var new_box = new_step_from_type(this_recipe,$(this));
 		new_box.addClass( 'current-step' );
 		$('#recipe-palette .recipe-step').toggleClass('icon-error recipe-step');
@@ -152,6 +140,7 @@ $(document).ready(function() { // start doc ready; do not delete this!
 		this_recipe = new Recipe();
 		clear_recipe();
 		loadform( '/recipe/retrieve_all', '#recipe-display-list');
+		show_display();
 	})
 	// clicking on an icon while a step is being filled should emit an error
 	$(".icon-error").live ('click', function() {
@@ -174,20 +163,20 @@ $(document).ready(function() { // start doc ready; do not delete this!
 	});
 
 	// depends disables itself and makes all other depends buttons "depends on"
-	$('.depends-button').live ('click', function() {
+	$('#recipe-content .depends-button').live ('click', function() {
 		dependant = $( this ).parent().parent().attr('id');
-		$( this ).removeClass( 'depends-button');
-		$( this ).addClass( 'dependant' );
-		$('.depends-button').toggleClass( 'depends-button depends-on' );
-		$('.depends-on')
-			.attr( 'value', 'Depends on' )
-			.click( function () {
-				var this_step = $( this ).parent().parent().attr('id');
-				this_recipe.add_dependency( dependant, this_step );
-				$('.depends-on').toggleClass( 'depends-button depends-on' );
-				$('.depends-button').attr('value', 'Depends');
-				dependant = '';
-			});
+		$( this ).toggleClass( 'depends-button dependant' );
+		$('#recipe-content .depends-button').toggleClass( 'depends-button depends-on' );
+		$('#recipe-content .depends-on').attr('value', 'Depends on');
+	});
+
+	$('#recipe-content .depends-on').live ('click', function() {
+		var this_step = $( this ).parent().parent().attr('id');
+		this_recipe.add_dependency( dependant, this_step );
+		$('#recipe-content .depends-on').toggleClass( 'depends-button depends-on' );
+		$('#recipe-content .dependant').toggleClass( 'depends-button dependant' );
+		$('#recipe-content .depends-button').attr('value', 'Depends');
+		dependant = '';
 	});
 
 	// execute the recipe
@@ -195,10 +184,6 @@ $(document).ready(function() { // start doc ready; do not delete this!
 		$('#recipe-execution textarea').prop('disabled', true);
 		show_exec(this_recipe);
 	});
-
-loadform( '/recipe/retrieve_all','#recipe-display-list' );
-loadform( '/recipe/load_builder', '#recipe-builder' );
-loadform( '/step_type/retrieve', '#step-type-list' );
 
 //	$(".icon-block").draggable({ containment: "#recipe-block" });
 //   	$( ".draggable" ).draggable({ revert: "invalid" });
