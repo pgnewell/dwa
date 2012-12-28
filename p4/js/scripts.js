@@ -2,12 +2,10 @@ $(document).ready(function() { // start doc ready; do not delete this!
 
 	var dependant = '';
 
-	// -----------------------------------------------------------------
-	// the actions related to a new recipe should be here
-	
 	loadform( '/recipe/retrieve_all','#recipe-display-list' );
 	loadform( '/recipe/load_builder', '#recipe-builder' );
 	loadform( '/step_type/retrieve', '#step-type-list' );
+	loadform( '/recipe/load_execute', '#recipe-execution')
 
 	$('#recipe-build').click( function () {
 		this_recipe = new Recipe();

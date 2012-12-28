@@ -144,5 +144,9 @@ class recipe_controller extends base_controller {
 		DB::instance(DB_NAME)->delete('dependent_steps','WHERE recipe = '. $recipe_id);
 		echo $recipe_id;
 	}
+	public function load_execute () {
+		$view = View::instance('v_recipe_execution');
+		echo $view;
+	}
 
 } # end of the class

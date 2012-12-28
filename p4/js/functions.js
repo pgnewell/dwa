@@ -1,6 +1,7 @@
-// A javascript to allow loading html via php or js so initial load (from 
-// php) and subsequent ajax loads can be done from the same source. means 
-// that URLs can be used to load html which moves the php out of the views.
+// A javascript to allow loading html via php or js (ajax) so initial load 
+// (from php) and subsequent ajax loads can be done from the same source. means 
+// that URLs can be used to load html via ajax which moves the php out of 
+// the views.
 
 function loadform ( url, windowdiv ) {
 	var loadform_options = { 
@@ -92,9 +93,9 @@ function show_exec(recipe) {
 }
 
 function clear_recipe() {
-	$('#recipe-content .completed-step').remove();
-	$('#recipe-name').val('');
-	$('#recipe-description').val('');
+	loadform( '/recipe/load_builder', '#recipe-builder' );
+	loadform( '/recipe/load_execute', '#recipe-execution')
+	loadform( '/step_type/retrieve', '#step-type-list' );
 }
 
 function set_depends_button (element) {

@@ -23,20 +23,7 @@
 			When the user clicks on done the block disappears and all steps that were dependent 
 			on should appear. Ideally this would be in some order but that was not done
 		  -->
-			<div id='recipe-execution' class='hide'>
-				<div id="execute-header">
-					<input type='button' id='exec-clear' value='Clear' onClick='window.location.reload()'>
-				</div>
-				<div id='recipe-execution-list' class='hide'>
-	
-					<div id='sample-execute-block' class='hide'>
-						<div class='execute-instruction'>instructions go here</div>
-						<div class='execute-done'>
-							<input type='button' class='execute-done-button' value='Complete'>
-						</div>
-					</div>
-				</div>
-			</div>
+			<div id='recipe-execution' class='hide'></div>
 
 		</div>
 		<div id='right-sidebar' class='main-subview'>
