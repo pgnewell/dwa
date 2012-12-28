@@ -23,7 +23,9 @@ drop is gone and one for the message for any error messages.
 		  <input id='recipe-name' type='text' name='Recipe name' value='<?=$name?>'><br>
 			Description<br>
 		  <textarea id='recipe-description' name='description' value='<?=$description?>'></textarea><br>
+			<!--
 			<input id='recipe-picture' type='file' name='picture' />
+		  -->
 	</div>
 	<div id='recipe-step-list'>
 		<div id='recipe-footer' class='recipe-step droppable'>
