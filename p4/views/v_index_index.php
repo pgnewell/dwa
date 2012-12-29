@@ -24,7 +24,7 @@
 			on should appear. Ideally this would be in some order but that was not done
 		  -->
 			<div id='recipe-execution' class='hide'></div>
-
+			<div id='user-profile' class='hide'></div>
 		</div>
 		<div id='right-sidebar' class='main-subview'>
 			<?=$rsb?>

@@ -1,5 +1,5 @@
 <div id="execute-header">
-	<input type='button' id='exec-clear' value='Clear' onClick='window.location.reload()'>
+	<input type='button' id='exec-clear' value='Clear' onClick='return_to_main()'>
 </div>
 <div id='recipe-execution-list' class='hide'>
 

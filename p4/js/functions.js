@@ -66,22 +66,23 @@ function hide_dependants(recipe) {
 }
 
 function show_build() {
-	$('#recipe-display-list').hide();
-	$('#recipe-execution').hide();
-	$('#recipe-builder').show();
+	show_form( '#recipe-builder' );
 }
 
 function show_display() {
-	$('#recipe-execution').hide();
-	$('#recipe-builder').hide();
-	$('#recipe-display-list').show();
+	show_form( '#recipe-display-list' );
+}
+
+function return_to_main() {
+	this_recipe = new Recipe();
+	clear_recipe();
+	loadform( '/recipe/retrieve_all', '#recipe-display-list');
+	show_display();
 }
 
 function show_exec(recipe) {
 	var exec_recipe = recipe.clone();
-	$('#recipe-display-list').hide();
-	$('#recipe-builder').hide();
-	$('#recipe-execution').show();
+	show_form( '#recipe-execution' );
 	hide_dependants(recipe);
 	$('#recipe-execution .exec-done-button').click( function () {
 		var step = $(this).parent().parent();
@@ -96,6 +97,11 @@ function clear_recipe() {
 	loadform( '/recipe/load_builder', '#recipe-builder' );
 	loadform( '/recipe/load_execute', '#recipe-execution')
 	loadform( '/step_type/retrieve', '#step-type-list' );
+}
+
+function show_form( form ) {
+	$('#main-display>div').hide();
+	$(form).show();
 }
 
 function set_depends_button (element) {

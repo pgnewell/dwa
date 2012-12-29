@@ -23,7 +23,7 @@
 <div>
   <ul>
     <li>
-      <a href='#' id='users-profile'>See profile</a>
+      <a href='#' id='users-profile-button'>See profile</a>
     </li>
     <li>
       <a href='#' id='recipe-build'>Enter Recipes</a>

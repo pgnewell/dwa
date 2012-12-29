@@ -17,8 +17,10 @@ $(document).ready(function() { // start doc ready; do not delete this!
 		loadform( '/index/loadform/users_signup', '#main-display');
 	});
 
-	$('#users-profile').click( function () {
-		loadform( '/users/profile', '#main-display');
+	$('#users-profile-button').click( function () {
+		loadform( '/users/profile', '#user-profile');
+		show_form( '#user-profile' );
+		$('#profile-return').click( return_to_main );
 	});
 
 	$('.display-recipe-edit').live ( 'click', function () {
@@ -134,12 +136,7 @@ $(document).ready(function() { // start doc ready; do not delete this!
 		}
 	});
 
-	$('#main-header h1,return-to-main').click( function () {
-		this_recipe = new Recipe();
-		clear_recipe();
-		loadform( '/recipe/retrieve_all', '#recipe-display-list');
-		show_display();
-	})
+	$('#main-header h1').click( return_to_main );
 	// clicking on an icon while a step is being filled should emit an error
 	$(".icon-error").live ('click', function() {
 		$('#message-block').html('Finish this step or cancel it before adding more');
